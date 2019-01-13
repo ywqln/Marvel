@@ -3,12 +3,16 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.ywqln.marvel"
+        applicationId "com.ywqln.marvelDev"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        flavorDimensions "default"
+        manifestPlaceholders = [
+                app_name: "惊奇Dev",
+        ]
     }
     buildTypes {
         release {
@@ -16,28 +20,31 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-//    productFlavors {
-//        beta {
-//            minSdkVersion 22
-//            applicationId 'com.ywqln.marvelDev'
-//            targetSdkVersion 26
-//            versionCode 1
-//            versionName '1.0'
-//            manifestPlaceholders = [
-//                    app_name: "惊奇beta",
-//            ]
-//        }
-//        publish {
-//            minSdkVersion 22
-//            applicationId 'com.ywqln.marvel'
-//            targetSdkVersion 26
-//            versionCode 1
-//            versionName '1.0'
-//            manifestPlaceholders = [
-//                    app_name: "惊奇",
-//            ]
-//        }
-//    }
+    dataBinding {
+        enabled = true
+    }
+    productFlavors {
+        beta {
+            minSdkVersion 22
+            applicationId 'com.ywqln.marvelDev'
+            targetSdkVersion 26
+            versionCode 1
+            versionName '1.0'
+            manifestPlaceholders = [
+                    app_name: "惊奇beta",
+            ]
+        }
+        publish {
+            minSdkVersion 22
+            applicationId 'com.ywqln.marvel'
+            targetSdkVersion 26
+            versionCode 1
+            versionName '1.0'
+            manifestPlaceholders = [
+                    app_name: "惊奇",
+            ]
+        }
+    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
