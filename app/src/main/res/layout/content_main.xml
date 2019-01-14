@@ -5,22 +5,22 @@
     <data>
 
         <variable
-            name="hero"
-            type="com.ywqln.marvel.model.Hero" />
+            name="viewModel"
+            type="com.ywqln.marvel.ui.main.IMainViewModel" />
     </data>
 
     <android.support.v4.widget.NestedScrollView xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context="com.ywqln.marvel.ui.MainActivity"
+        tools:context="com.ywqln.marvel.ui.main.MainActivity"
         tools:showIn="@layout/activity_main">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_normal"
-            android:text='@{hero.name} + "的能力是" + @{hero.power}' />
+            android:text='@{viewModel.name} + "的能力是" + @{viewModel.power}' />
 
     </android.support.v4.widget.NestedScrollView>
 </layout>

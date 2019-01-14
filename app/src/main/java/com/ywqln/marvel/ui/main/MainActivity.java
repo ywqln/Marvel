@@ -1,17 +1,16 @@
-package com.ywqln.marvel.ui;
+package com.ywqln.marvel.ui.main;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.ywqln.marvel.R;
 import com.ywqln.marvel.databinding.ActivityMainBinding;
-import com.ywqln.marvel.model.doImpl.HeroDo;
 
 /**
  * 描述：应用主启动页面
@@ -20,30 +19,21 @@ import com.ywqln.marvel.model.doImpl.HeroDo;
  * @author yanwenqiang
  * @date 2019/1/13
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements IMainEventHandler {
 
     private ActivityMainBinding binding;
-    private HeroDo hero;
+    private MainViewModel hero;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        hero = new HeroDo().setName("钢铁侠").setGender("男").setAge(45).setPower("有钱");
-        binding.setHero(hero);
+        hero = new MainViewModel().setName("钢铁侠").setGender("男").setAge(45).setPower("有钱");
+        binding.setViewModel(hero);
+        binding.setEvent(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(view -> {
-                    Snackbar.make(view, "替换成你自己的事件", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-
-                    hero = new HeroDo().setName("黑寡妇").setGender("女").setAge(38).setPower("漂亮");
-                    binding.setHero(hero);
-                }
-        );
     }
 
     @Override
@@ -59,5 +49,14 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void fabClick(View view) {
+        Snackbar.make(view, "替换成你自己的事件", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+
+        hero = new MainViewModel().setName("黑寡妇").setGender("女").setAge(38).setPower("漂亮");
+        binding.setViewModel(hero);
     }
 }
