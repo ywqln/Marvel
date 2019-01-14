@@ -1,62 +1,56 @@
 package com.ywqln.marvel.ui.main;
 
-import android.databinding.DataBindingUtil;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.TextView;
 
 import com.ywqln.marvel.R;
-import com.ywqln.marvel.databinding.ActivityMainBinding;
+import com.ywqln.marvel.ui.detail.DetailActivity;
 
 /**
- * 描述：应用主启动页面
+ * 描述：应用程序主启动页面
  * <p>
  *
  * @author yanwenqiang
  * @date 2019/1/13
  */
-public class MainActivity extends AppCompatActivity implements IMainEventHandler {
+public class MainActivity extends AppCompatActivity {
 
-    private ActivityMainBinding binding;
-    private MainViewModel mViewModel;
+    private TextView mTextMessage;
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            startActivity(new Intent(MainActivity.this, DetailActivity.class));
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    mTextMessage.setText(R.string.title_home);
+                    return true;
+                case R.id.navigation_dashboard:
+                    mTextMessage.setText(R.string.title_dashboard);
+                    return true;
+                case R.id.navigation_notifications:
+                    mTextMessage.setText(R.string.title_notifications);
+                    return true;
+            }
+            return false;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        mViewModel = new MainViewModel();
-        binding.setViewModel(mViewModel);
-        binding.setEvent(this);
+        setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        mTextMessage = findViewById(R.id.message);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void fabClick(View view) {
-        Snackbar.make(view, "替换成你自己的事件", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
-
-        mViewModel.updateHero();
-        binding.setViewModel(mViewModel);
-    }
 }

@@ -1,18 +1,18 @@
-package com.ywqln.marvel.ui.main;
+package com.ywqln.marvel.ui.detail;
 
 import com.ywqln.marvel.respDo.HeroRespDo;
 
 /**
- * 描述：主界面的ViewModel实现，内部可包含数据请求
+ * 描述：详情页的ViewModel实现，内部可包含数据请求
  * <p>
  *
  * @author yanwenqiang
  * @date 2019/1/13
  */
-public class MainViewModel implements IMainViewModel {
+public class DetailViewModel implements IDetailViewModel {
     private HeroRespDo mHero;
 
-    public MainViewModel() {
+    public DetailViewModel() {
         mHero = new HeroRespDo().setName("钢铁侠").setGender("男").setAge(45).setPower("有钱");
     }
 
