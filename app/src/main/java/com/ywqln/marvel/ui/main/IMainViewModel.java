@@ -9,7 +9,5 @@ package com.ywqln.marvel.ui.main;
  */
 public interface IMainViewModel {
     String getName();
-    String getGender();
-    int getAge();
-    String getPower();
+    String getDetail();
 }

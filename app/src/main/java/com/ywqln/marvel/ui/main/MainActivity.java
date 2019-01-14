@@ -22,14 +22,14 @@ import com.ywqln.marvel.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity implements IMainEventHandler {
 
     private ActivityMainBinding binding;
-    private MainViewModel hero;
+    private MainViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        hero = new MainViewModel().setName("钢铁侠").setGender("男").setAge(45).setPower("有钱");
-        binding.setViewModel(hero);
+        mViewModel = new MainViewModel();
+        binding.setViewModel(mViewModel);
         binding.setEvent(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements IMainEventHandler
         Snackbar.make(view, "替换成你自己的事件", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
 
-        hero = new MainViewModel().setName("黑寡妇").setGender("女").setAge(38).setPower("漂亮");
-        binding.setViewModel(hero);
+        mViewModel.updateHero();
+        binding.setViewModel(mViewModel);
     }
 }
