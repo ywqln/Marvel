@@ -13,7 +13,6 @@ Marvel Android
 
 ## 技术点
 
-
 - [ ] 1. [Retrofit](http://square.github.io/retrofit/) - 基于Okhttp网络请求框架的管理框架 结合OKHttp
 - [ ] 2. [RxLifeCycle](https://github.com/trello/RxLifecycle) - Activity/Fragment容器的指定生命周期取消订阅，防止内存泄漏
 - [ ] 3. [RxAndroid](https://github.com/ReactiveX/RxAndroid) - 响应式编程
@@ -41,3 +40,9 @@ Marvel Android
 - [ ] 25.[Material-Animations](https://github.com/lgvalle/Material-Animations) - 场景过度动画
 - [ ] 26.[Material Dialogs](https://github.com/afollestad/material-dialogs) - 一款自定义dialog框架
 - [x] 27.[MVVM](https://github.com/googlesamples/android-architecture-components/tree/master/BasicSample) - MVVM项目结构
+
+
+## 代码规范
+
+- 类名大驼峰，变量名小驼峰.
+- switch case 中分支代码超过5行，切换成方法.

@@ -21,16 +21,16 @@ import com.ywqln.marvel.databinding.ActivityDetailBinding;
  */
 public class DetailActivity extends AppCompatActivity implements IDetailEventHandler {
 
-    private ActivityDetailBinding binding;
+    private ActivityDetailBinding mBinding;
     private DetailViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_detail);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_detail);
         mViewModel = new DetailViewModel();
-        binding.setViewModel(mViewModel);
-        binding.setEvent(this);
+        mBinding.setViewModel(mViewModel);
+        mBinding.setEvent(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -57,6 +57,6 @@ public class DetailActivity extends AppCompatActivity implements IDetailEventHan
                 .setAction("Action", null).show();
 
         mViewModel.updateHero();
-        binding.setViewModel(mViewModel);
+        mBinding.setViewModel(mViewModel);
     }
 }
