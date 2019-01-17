@@ -1,6 +1,6 @@
 package com.ywqln.marvel.ui.detail;
 
-import com.ywqln.marvel.respDo.HeroRespDo;
+import com.ywqln.marvel.dto.resp.HeroRespDo;
 
 /**
  * 描述：详情页的ViewModel实现，内部可包含数据请求

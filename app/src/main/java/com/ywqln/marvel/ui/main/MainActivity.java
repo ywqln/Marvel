@@ -1,16 +1,16 @@
 package com.ywqln.marvel.ui.main;
 
-import android.app.FragmentTransaction;
+import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.ywqln.marvel.R;
 import com.ywqln.marvel.ui.detail.DetailActivity;
 import com.ywqln.marvel.ui.main.fragment.HomeFragment;
 import com.ywqln.marvel.ui.main.fragment.PersonalFragment;
+import com.ywqln.marvellib.base.ui.BaseActivity;
 
 /**
  * 描述：应用程序主启动页面
@@ -19,7 +19,7 @@ import com.ywqln.marvel.ui.main.fragment.PersonalFragment;
  * @author yanwenqiang
  * @date 2019/1/13
  */
-public class MainActivity extends AppCompatActivity implements IMainEventHandler {
+public class MainActivity extends BaseActivity implements IMainEventHandler {
 
     private HomeFragment mHomeFragment;
     private PersonalFragment mPersonalFragment;
@@ -27,32 +27,20 @@ public class MainActivity extends AppCompatActivity implements IMainEventHandler
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        ActivityMainBinding mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+//        ActivityMainBinding mBinding = DataBindingUtil.setContentView(this, R.layout
+// .activity_main);
 //        mBinding.setEvent(this);
 
         setContentView(R.layout.activity_main);
         BottomNavigationView navigation = findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(item -> menuSelected(item));
+
         showFragment(0);
-        navigation.setOnNavigationItemSelectedListener(
-                item ->
-                {
-                    switch (item.getItemId()) {
-                        case R.id.navigation_home:
-                            showFragment(0);
-                            return true;
-                        case R.id.navigation_dashboard:
-                            showFragment(1);
-                            return true;
-                        case R.id.navigation_notifications:
-                            startActivity(new Intent(MainActivity.this, DetailActivity.class));
-                            return true;
-                    }
-                    return false;
-                });
     }
 
     private void showFragment(int index) {
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
         if (mHomeFragment != null) {
             transaction.hide(mHomeFragment);
         }

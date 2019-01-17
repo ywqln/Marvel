@@ -2,7 +2,7 @@
 
 ## 疑问
 - [ ] 1.mvvm include bind:user="@{user}" user命名规则、含义，和引入的文件中data节点下的name是否必须一致.
-- [ ] 2.
+- [ ] 2.Cannot find the setter for attribute 'android:onItemSelected' with parameter type lambda on android.support.design.widget.BottomNavigationView.
 
 
 ## MVVM

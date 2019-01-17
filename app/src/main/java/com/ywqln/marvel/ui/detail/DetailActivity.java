@@ -3,7 +3,6 @@ package com.ywqln.marvel.ui.detail;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +10,7 @@ import android.view.View;
 
 import com.ywqln.marvel.R;
 import com.ywqln.marvel.databinding.ActivityDetailBinding;
+import com.ywqln.marvellib.base.ui.BaseActivity;
 
 /**
  * 描述：详情页面
@@ -19,7 +19,7 @@ import com.ywqln.marvel.databinding.ActivityDetailBinding;
  * @author yanwenqiang
  * @date 2019/1/13
  */
-public class DetailActivity extends AppCompatActivity implements IDetailEventHandler {
+public class DetailActivity extends BaseActivity implements IDetailEventHandler {
 
     private ActivityDetailBinding mBinding;
     private DetailViewModel mViewModel;

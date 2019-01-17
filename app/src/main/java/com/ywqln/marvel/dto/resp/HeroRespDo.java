@@ -1,4 +1,4 @@
-package com.ywqln.marvel.respDo;
+package com.ywqln.marvel.dto.resp;
 
 /**
  * 描述:英雄任务.

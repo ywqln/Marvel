@@ -17,7 +17,7 @@
         tools:context="com.ywqln.marvel.ui.detail.DetailActivity"
         tools:showIn="@layout/activity_detail">
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_normal"
