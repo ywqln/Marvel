@@ -12,7 +12,11 @@ public class StringUtil {
      * 空字符串,为避免不必要的创建空字符串对象.
      */
     public static final String Empty = "";
-    public static final String Space = " "; // 空格
+
+    /**
+     * 空格
+     */
+    public static final String Space = " ";
 
     public static final String nullToEmpty(String value) {
         if (value == null) {
