@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/Marvel.iml" filepath="$PROJECT_DIR$/Marvel.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/marvellib/marvellib.iml" filepath="$PROJECT_DIR$/marvellib/marvellib.iml" />
-      <module fileurl="file://$PROJECT_DIR$/marvellib/marvellib.iml" filepath="$PROJECT_DIR$/marvellib/marvellib.iml" />
     </modules>
   </component>
 </project>

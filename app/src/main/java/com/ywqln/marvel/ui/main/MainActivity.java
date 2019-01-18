@@ -1,9 +1,9 @@
 package com.ywqln.marvel.ui.main;
 
-import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.view.MenuItem;
 
 import com.ywqln.marvel.R;
@@ -73,9 +73,11 @@ public class MainActivity extends BaseActivity implements IMainEventHandler {
         switch (item.getItemId()) {
             case R.id.navigation_home:
                 showFragment(0);
+                mNotificationBuilder.setMessage("您选择了首页").show();
                 return true;
             case R.id.navigation_dashboard:
                 showFragment(1);
+                mNotificationBuilder.setMessage("您选择了未知页面").show();
                 return true;
             case R.id.navigation_notifications:
                 startActivity(new Intent(MainActivity.this, DetailActivity.class));

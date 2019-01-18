@@ -1,13 +1,15 @@
 package com.ywqln.marvel;
 
+import static org.junit.Assert.assertEquals;
+
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.ywqln.marvellib.utils.UnitUtil;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import static org.junit.Assert.*;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -20,6 +22,8 @@ public class ExampleInstrumentedTest {
     public void useAppContext() throws Exception {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
+
+        float px = UnitUtil.dp2px(appContext, 56);
 
         assertEquals("com.ywqln.marvel", appContext.getPackageName());
     }

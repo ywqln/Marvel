@@ -16,6 +16,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/coordinator_layout"
         android:fitsSystemWindows="true"
         tools:context="com.ywqln.marvel.ui.detail.DetailActivity">
 
@@ -48,6 +49,7 @@
 
         <include
             layout="@layout/content_detail"
+            android:id="@+id/content"
             bind:viewModel="@{viewModel}"/>
 
         <android.support.design.widget.FloatingActionButton
@@ -59,6 +61,16 @@
             app:layout_anchor="@id/app_bar"
             app:layout_anchorGravity="bottom|end"
             app:srcCompat="@android:drawable/ic_dialog_email"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            android:onClick="@{(view)->event.fabClick(view)}"
+            app:layout_anchor="@id/content"
+            app:layout_anchorGravity="center|end"
+            app:srcCompat="@android:drawable/sym_action_call"/>
 
     </android.support.design.widget.CoordinatorLayout>
 </layout>

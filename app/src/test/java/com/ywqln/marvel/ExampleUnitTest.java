@@ -1,8 +1,10 @@
 package com.ywqln.marvel;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
-import static org.junit.Assert.*;
+import com.ywqln.marvellib.utils.StringUtil;
+
+import org.junit.Test;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -13,5 +15,9 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);
+
+        System.out.println(StringUtil.nullToEmpty("不为空的字符串"));
+        System.out.println(StringUtil.nullToEmpty(null));
+        System.out.println(StringUtil.nullToEmpty("====="));
     }
 }
