@@ -22,10 +22,19 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:28.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    // ========= network =========
+    // - 网络请求框架 retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    // - 网络请求 client(okHttpClient)
+    implementation 'com.squareup.okhttp3:okhttp:3.12.1'
+    // - 数据解析器 addConverterFactory(GsonConverterFactory.create())
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    // - 网络请求适配器 addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
+    // ======= network end =======
 }

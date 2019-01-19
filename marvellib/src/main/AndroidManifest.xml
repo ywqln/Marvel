@@ -1,2 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.ywqln.marvellib"/>
+    package="com.ywqln.marvellib">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+</manifest>
