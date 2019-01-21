@@ -1,10 +1,11 @@
 package com.ywqln.marvellib.net.guide;
 
+import com.ywqln.marvellib.net.MappingApi;
 import com.ywqln.marvellib.net.guide.dto.response.NewsResp;
+import com.ywqln.marvellib.net.guide.interceptor.NewsHeaderInterceptor;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
-import retrofit2.http.Headers;
 import retrofit2.http.Query;
 
 /**
@@ -14,8 +15,15 @@ import retrofit2.http.Query;
  * @author yanwenqiang.
  * @date 2019/1/21
  */
+@MappingApi(baseUrl = "http://toutiao-ali.juheapi.com",headerInterceptor = NewsHeaderInterceptor.class)
 public interface NewsApi {
+    /**
+     * 获取新闻列表
+     *
+     * @param type 可选参数：top(头条，默认),shehui(社会),guonei(国内),guoji(国际),yule(娱乐),
+     *             tiyu(体育)junshi(军事),keji(科技),caijing(财经),shishang(时尚)
+     * @return
+     */
     @GET("/toutiao/index")
-    @Headers("Authorization:APPCODE 1b56403f51d84d66812ac7aa274fefe6")
     Observable<NewsResp> getNews(@Query("type") String type);
 }

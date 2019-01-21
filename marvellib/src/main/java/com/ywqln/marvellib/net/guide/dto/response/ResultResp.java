@@ -8,7 +8,7 @@ package com.ywqln.marvellib.net.guide.dto.response;
  * @date 2019/1/19
  */
 public class ResultResp {
-    private String name;
+    private String name = "Lina";
 
     public String getName() {
         return name;

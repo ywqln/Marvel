@@ -18,7 +18,7 @@ import retrofit2.http.Query;
  * @date 2019/1/19
  */
 public interface MyApi {
-    /**
+     /**
      * 根据学号获取某个学生信息
      * @param studentNumber
      * @return

@@ -1,6 +1,6 @@
 package com.ywqln.marvel;
 
-import android.app.Application;
+import com.ywqln.marvellib.base.BaseApplication;
 
 /**
  * 描述：应用 Application
@@ -9,7 +9,7 @@ import android.app.Application;
  * @author yanwenqiang
  * @date 2019/1/13
  */
-public class MarvelApp extends Application {
+public class MarvelApp extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();

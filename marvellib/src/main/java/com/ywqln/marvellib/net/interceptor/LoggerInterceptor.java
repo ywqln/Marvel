@@ -21,16 +21,23 @@ import okio.Buffer;
 import okio.BufferedSource;
 
 /**
- * Created by yanwenqiang on 17/6/19.
+ * 描述：api请求log拦截器,使用{@link WLog}打印日志
  * <p>
- * 描述:api请求log拦截器,使用{@link WLog}打印日志
+ *
+ * @author yanwenqiang
+ * @date 2017/6/19.
  */
 @SuppressWarnings("unused")
 public class LoggerInterceptor implements Interceptor {
 
-    private static final String REQUEST_TAG = "Request";//请求标签
-    private static final String RESPONSE_TAG = "Response";//响应标签
-
+    /**
+     * 请求标签
+     */
+    private static final String REQUEST_TAG = "Request";
+    /**
+     * 响应标签
+     */
+    private static final String RESPONSE_TAG = "Response";
 
     private static final Charset UTF8 = Charset.forName("UTF-8");
     private final Level mLevel;
@@ -133,7 +140,8 @@ public class LoggerInterceptor implements Interceptor {
             WLog.p(RESPONSE_TAG, responseBuilder.toString());
         } else {
             BufferedSource source = responseBody.source();
-            source.request(Long.MAX_VALUE); // Buffer the entire body.
+            // Buffer the entire body.
+            source.request(Long.MAX_VALUE);
             Buffer buffer = source.buffer();
 
             Charset charset = UTF8;
@@ -193,7 +201,8 @@ public class LoggerInterceptor implements Interceptor {
             }
             return true;
         } catch (EOFException e) {
-            return false; // Truncated UTF-8 sequence.
+            // Truncated UTF-8 sequence.
+            return false;
         }
     }
 
