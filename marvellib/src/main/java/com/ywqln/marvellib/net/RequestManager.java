@@ -1,7 +1,6 @@
-package com.ywqln.marvellib.net.guide;
+package com.ywqln.marvellib.net;
 
 
-import com.ywqln.marvellib.net.MappingApi;
 import com.ywqln.marvellib.net.interceptor.LoggerInterceptor;
 
 import java.util.concurrent.TimeUnit;

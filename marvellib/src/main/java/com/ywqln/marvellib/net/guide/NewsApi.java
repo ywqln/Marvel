@@ -15,7 +15,7 @@ import retrofit2.http.Query;
  * @author yanwenqiang.
  * @date 2019/1/21
  */
-@MappingApi(baseUrl = "http://toutiao-ali.juheapi.com",headerInterceptor = NewsHeaderInterceptor.class)
+@MappingApi(baseUrl = "http://toutiao-ali.juheapi.com", headerInterceptor = NewsHeaderInterceptor.class)
 public interface NewsApi {
     /**
      * 获取新闻列表

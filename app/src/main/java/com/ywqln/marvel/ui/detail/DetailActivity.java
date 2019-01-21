@@ -14,7 +14,7 @@ import com.ywqln.marvel.databinding.ActivityDetailBinding;
 import com.ywqln.marvellib.base.ui.BaseActivity;
 import com.ywqln.marvellib.net.MappingApi;
 import com.ywqln.marvellib.net.guide.NewsApi;
-import com.ywqln.marvellib.net.guide.RequestManager;
+import com.ywqln.marvellib.net.RequestManager;
 import com.ywqln.marvellib.net.guide.dto.response.NewsResp;
 import com.ywqln.marvellib.net.guide.dto.response.ResultResp;
 import com.ywqln.marvellib.net.guide.dto.response.model.News;
