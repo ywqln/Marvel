@@ -5,15 +5,18 @@
 
     // - 网络请求框架 retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
-
+    
     // - 网络请求 client(okHttpClient)
     implementation 'com.squareup.okhttp3:okhttp:3.12.1'
-
+    
     // - 数据解析器 addConverterFactory(GsonConverterFactory.create())
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
-
+    
     // - 网络请求适配器 addCallAdapterFactory(RxJava2CallAdapterFactory.create())
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
+    
+    // AndroidSchedulers.mainThread()
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
 ```
 
 

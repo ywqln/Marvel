@@ -1,5 +1,7 @@
 package com.ywqln.marvellib.net.guide;
 
+import com.ywqln.marvellib.net.guide.dto.response.ResultResp;
+
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -22,7 +24,7 @@ public interface MyApi {
      * @return
      */
     @GET("/getStudent")
-    Call<ResultDo> getStudent(@Query("num") String studentNumber);
+    Call<ResultResp> getStudent(@Query("num") String studentNumber);
 
     /**
      * 获取一个班级的所有学生信息
@@ -30,5 +32,5 @@ public interface MyApi {
      * @return
      */
     @POST("/getStudents")
-    Observable<List<ResultDo>> getStudents(@Query("classNum") String classNumber);
+    Observable<List<ResultResp>> getStudents(@Query("classNum") String classNumber);
 }

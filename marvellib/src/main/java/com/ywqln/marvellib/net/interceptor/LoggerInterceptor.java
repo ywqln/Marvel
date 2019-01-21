@@ -1,5 +1,7 @@
 package com.ywqln.marvellib.net.interceptor;
 
+import com.ywqln.marvellib.utils.WLog;
+
 import java.io.EOFException;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -19,27 +21,19 @@ import okio.Buffer;
 import okio.BufferedSource;
 
 /**
- * 描述：待描述
+ * Created by yanwenqiang on 17/6/19.
  * <p>
- *
- * @author yanwenqiang
- * @date 2019/1/20
+ * 描述:api请求log拦截器,使用{@link WLog}打印日志
  */
+@SuppressWarnings("unused")
 public class LoggerInterceptor implements Interceptor {
 
-    /**
-     * 请求标签
-     */
-    private static final String REQUEST_TAG = "Request";
-    /**
-     * 响应标签
-     */
-    private static final String RESPONSE_TAG = "Response";
+    private static final String REQUEST_TAG = "Request";//请求标签
+    private static final String RESPONSE_TAG = "Response";//响应标签
 
 
     private static final Charset UTF8 = Charset.forName("UTF-8");
     private final Level mLevel;
-    private int mInt;
 
     public LoggerInterceptor() {
         this(Level.BASIC);
@@ -60,10 +54,8 @@ public class LoggerInterceptor implements Interceptor {
         Connection connection = chain.connection();
         Protocol protocol = connection != null ? connection.protocol() : Protocol.HTTP_1_1;
         requestBuilder.append(request.method())
-                .append("")
+                .append(" ")
                 .append(request.url())
-                .append(" \n")
-                .append(request.headers())
                 .append(" ")
                 .append(protocol)
                 .append("\n");
@@ -101,12 +93,15 @@ public class LoggerInterceptor implements Interceptor {
                     .append("\n");
         }
 
+        WLog.p(REQUEST_TAG, requestBuilder.toString());
+
         StringBuilder responseBuilder = new StringBuilder();
         long startNs = System.nanoTime();
         Response response;
         try {
             response = chain.proceed(request);
         } catch (IOException e) {
+            WLog.e(REQUEST_TAG, requestBuilder.toString());
             throw e;
         }
         long tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs);
@@ -135,10 +130,10 @@ public class LoggerInterceptor implements Interceptor {
 
         if (bodyEncoded(response.headers())) {
             responseBuilder.append("END HTTP (encoded body omitted)");
+            WLog.p(RESPONSE_TAG, responseBuilder.toString());
         } else {
             BufferedSource source = responseBody.source();
-            // Buffer the entire body.
-            source.request(Long.MAX_VALUE);
+            source.request(Long.MAX_VALUE); // Buffer the entire body.
             Buffer buffer = source.buffer();
 
             Charset charset = UTF8;
@@ -150,6 +145,7 @@ public class LoggerInterceptor implements Interceptor {
                     responseBuilder.append(
                             "Couldn't decode the response body; charset is likely malformed.")
                             .append("END HTTP");
+                    WLog.p(RESPONSE_TAG, responseBuilder.toString());
                     return response;
                 }
             }
@@ -158,12 +154,19 @@ public class LoggerInterceptor implements Interceptor {
                 responseBuilder.append("END HTTP (binary ")
                         .append(buffer.size())
                         .append("-byte body omitted)");
+                WLog.p(RESPONSE_TAG, responseBuilder.toString());
                 return response;
             }
 
             responseBuilder.append("END HTTP (")
                     .append(buffer.size())
                     .append("-byte body)");
+
+            WLog.p(RESPONSE_TAG, responseBuilder.toString());
+
+            if (contentLength != 0) {
+                WLog.json(RESPONSE_TAG, buffer.clone().readString(charset));
+            }
         }
 
         return response;
@@ -179,8 +182,7 @@ public class LoggerInterceptor implements Interceptor {
             Buffer prefix = new Buffer();
             long byteCount = buffer.size() < 64 ? buffer.size() : 64;
             buffer.copyTo(prefix, 0, byteCount);
-            mInt = 16;
-            for (int i = 0; i < mInt; i++) {
+            for (int i = 0; i < 16; i++) {
                 if (prefix.exhausted()) {
                     break;
                 }
@@ -191,14 +193,13 @@ public class LoggerInterceptor implements Interceptor {
             }
             return true;
         } catch (EOFException e) {
-            // Truncated UTF-8 sequence.
-            return false;
+            return false; // Truncated UTF-8 sequence.
         }
     }
 
     private boolean bodyEncoded(Headers headers) {
         String contentEncoding = headers.get("Content-Encoding");
-        return contentEncoding != null && !"identity".equalsIgnoreCase(contentEncoding);
+        return contentEncoding != null && !contentEncoding.equalsIgnoreCase("identity");
     }
 
     /**

@@ -11,6 +11,7 @@ import android.view.View;
 import com.ywqln.marvel.R;
 import com.ywqln.marvel.databinding.ActivityDetailBinding;
 import com.ywqln.marvellib.base.ui.BaseActivity;
+import com.ywqln.marvellib.net.guide.RequestManager;
 
 /**
  * 描述：详情页面
@@ -56,7 +57,10 @@ public class DetailActivity extends BaseActivity implements IDetailEventHandler 
         Snackbar.make(view, "替换成你自己的事件", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
 
-        mViewModel.updateHero();
-        mBinding.setViewModel(mViewModel);
+//        mViewModel.updateHero();
+//        mBinding.setViewModel(mViewModel);
+
+        new RequestManager().getNews();
+
     }
 }

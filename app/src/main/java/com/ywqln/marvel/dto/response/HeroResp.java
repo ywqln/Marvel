@@ -1,4 +1,4 @@
-package com.ywqln.marvel.dto.resp;
+package com.ywqln.marvel.dto.response;
 
 /**
  * 描述:英雄任务.
@@ -7,7 +7,7 @@ package com.ywqln.marvel.dto.resp;
  * @author yanwenqiang.
  * @date 2019/1/14
  */
-public class HeroRespDo {
+public class HeroResp {
     private String name;
     private String gender;
     private int age;
@@ -17,7 +17,7 @@ public class HeroRespDo {
         return name;
     }
 
-    public HeroRespDo setName(String name) {
+    public HeroResp setName(String name) {
         this.name = name;
         return this;
     }
@@ -26,7 +26,7 @@ public class HeroRespDo {
         return gender;
     }
 
-    public HeroRespDo setGender(String gender) {
+    public HeroResp setGender(String gender) {
         this.gender = gender;
         return this;
     }
@@ -35,7 +35,7 @@ public class HeroRespDo {
         return age;
     }
 
-    public HeroRespDo setAge(int age) {
+    public HeroResp setAge(int age) {
         this.age = age;
         return this;
     }
@@ -44,14 +44,14 @@ public class HeroRespDo {
         return power;
     }
 
-    public HeroRespDo setPower(String power) {
+    public HeroResp setPower(String power) {
         this.power = power;
         return this;
     }
 
     @Override
     public String toString() {
-        return "HeroRespDo{" +
+        return "HeroResp{" +
                 "name='" + name + '\'' +
                 ", gender='" + gender + '\'' +
                 ", age=" + age +

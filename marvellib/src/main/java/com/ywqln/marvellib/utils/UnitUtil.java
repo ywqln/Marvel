@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.TypedValue;
 
 /**
- * 描述:待描述.
+ * 描述:单位换算工具.
  * <p>
  *
  * @author yanwenqiang.

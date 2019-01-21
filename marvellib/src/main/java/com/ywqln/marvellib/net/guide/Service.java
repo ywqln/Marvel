@@ -1,6 +1,8 @@
 package com.ywqln.marvellib.net.guide;
 
 
+import com.ywqln.marvellib.net.guide.dto.response.ResultResp;
+
 import java.util.List;
 
 import io.reactivex.Observer;
@@ -37,15 +39,15 @@ public class Service {
 
         // 使用Call的方式请求一个api
         MyApi api = retrofit.create(MyApi.class);
-        Call<ResultDo> result = api.getStudent("007");
-        result.enqueue(new Callback<ResultDo>() {
+        Call<ResultResp> result = api.getStudent("007");
+        result.enqueue(new Callback<ResultResp>() {
             @Override
-            public void onResponse(Call<ResultDo> call, Response<ResultDo> response) {
+            public void onResponse(Call<ResultResp> call, Response<ResultResp> response) {
 
             }
 
             @Override
-            public void onFailure(Call<ResultDo> call, Throwable t) {
+            public void onFailure(Call<ResultResp> call, Throwable t) {
 
             }
         });
@@ -53,14 +55,14 @@ public class Service {
         // 使用Observeble方式请求一个api
         retrofit.create(MyApi.class)
                 .getStudents("")
-                .subscribe(new Observer<List<ResultDo>>() {
+                .subscribe(new Observer<List<ResultResp>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         // 在订阅时，也就是请求数据前
                     }
 
                     @Override
-                    public void onNext(List<ResultDo> value) {
+                    public void onNext(List<ResultResp> value) {
                         // 数据结果返回
                     }
 
