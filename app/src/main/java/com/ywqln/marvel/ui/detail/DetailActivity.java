@@ -4,7 +4,6 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,11 +11,9 @@ import android.view.View;
 import com.ywqln.marvel.R;
 import com.ywqln.marvel.databinding.ActivityDetailBinding;
 import com.ywqln.marvellib.base.ui.BaseActivity;
-import com.ywqln.marvellib.net.MappingApi;
-import com.ywqln.marvellib.net.guide.NewsApi;
 import com.ywqln.marvellib.net.RequestManager;
+import com.ywqln.marvellib.net.guide.NewsApi;
 import com.ywqln.marvellib.net.guide.dto.response.NewsResp;
-import com.ywqln.marvellib.net.guide.dto.response.ResultResp;
 import com.ywqln.marvellib.net.guide.dto.response.model.News;
 
 import java.util.List;
@@ -73,23 +70,10 @@ public class DetailActivity extends BaseActivity implements IDetailEventHandler 
         mViewModel.updateHero();
         mBinding.setViewModel(mViewModel);
 
-        TestAnnotation();
-        getNews();
+//        getNews();
     }
 
-    private void TestAnnotation(){
-        Object object = RequestManager.instance().getInterceptor(TestApi.class);
-        ResultResp bbbb = (ResultResp) object;
-        String result = bbbb.getName();
-        Log.e("测试", result);
-    }
-
-    @MappingApi(baseUrl = "http://www.xxx.com",headerInterceptor = ResultResp.class)
-    public interface TestApi {
-
-    }
-
-    private void getNews(){
+    private void getNews() {
         RequestManager.instance().getApi(NewsApi.class)
                 .getNews("yule")
                 .subscribeOn(Schedulers.io())

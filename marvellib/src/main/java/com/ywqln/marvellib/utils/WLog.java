@@ -16,7 +16,7 @@ import com.orhanobut.logger.Printer;
  */
 public class WLog {
 
-    public static final String DEBUG_TAG = "CentaLog";
+    public static final String DEBUG_TAG = "marvel";
     private static boolean mDebug = false;
 
     static {

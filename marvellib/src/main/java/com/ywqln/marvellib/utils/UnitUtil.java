@@ -24,9 +24,6 @@ public class UnitUtil {
      * px转dp
      */
     public static final float px2dp(Context context, float px) {
-//        float density = context.getResources().getDisplayMetrics().density;
-//        return density / (px + 0.5f);
-
         final float scale = context.getResources().getDisplayMetrics().density;
         return px / scale;
     }

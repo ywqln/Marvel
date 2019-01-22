@@ -1,6 +1,13 @@
 package com.ywqln.marvellib.net;
 
 
+import android.text.TextUtils;
+
+import com.ywqln.marvellib.net.annotation.BaseUrl;
+import com.ywqln.marvellib.net.annotation.BaseUrlDynamic;
+import com.ywqln.marvellib.net.annotation.Interceptors;
+import com.ywqln.marvellib.net.annotation.NetworkInterceptors;
+import com.ywqln.marvellib.net.interceptor.BaseUrlInterceptor;
 import com.ywqln.marvellib.net.interceptor.LoggerInterceptor;
 
 import java.util.concurrent.TimeUnit;
@@ -24,13 +31,25 @@ public class RequestManager {
     private final static long DEFAULT_WRITE_TIMEOUT = 15;
     private static RequestManager requestManager;
 
+    /**
+     * okHttpBuilder
+     */
     protected OkHttpClient.Builder mOkHttpBuilder;
+    /**
+     * retrofitBuilder
+     */
     protected Retrofit.Builder mRetrofitBuilder;
 
+    /**
+     * 禁止手动实例化
+     */
     private RequestManager() {
 
     }
 
+    /**
+     * 得到一个RequestManager对象，保证唯一性
+     */
     public static RequestManager instance() {
         if (requestManager == null) {
             requestManager = new RequestManager();
@@ -38,21 +57,68 @@ public class RequestManager {
         return requestManager;
     }
 
+    /**
+     * 通过接口定义interface获取一个api请求
+     *
+     * @param apiClass interface class
+     * @param <T>      interface类型
+     * @return 返回interface的实例对象
+     */
     public <T> T getApi(final Class<T> apiClass) {
-        return getRetrofitBuilder(apiClass).build().create(apiClass);
+        return getRetrofit(apiClass).create(apiClass);
     }
 
-    private Retrofit.Builder getRetrofitBuilder(Class annotationClass) {
-        mRetrofitBuilder = new Retrofit.Builder()
-                .baseUrl(getBaseUrl(annotationClass))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(getOkHttpClient(annotationClass).build());
-
-        return mRetrofitBuilder;
+    /**
+     * 设置超时时间
+     *
+     * @param timeOut 超时时间
+     * @return 返回当前对象
+     */
+    public RequestManager setTimeOut(long timeOut) {
+        if (mOkHttpBuilder == null) {
+            return null;
+        }
+        mOkHttpBuilder.connectTimeout(timeOut, TimeUnit.SECONDS)
+                .readTimeout(timeOut, TimeUnit.SECONDS)
+                .writeTimeout(timeOut, TimeUnit.SECONDS);
+        return this;
     }
 
-    private OkHttpClient.Builder getOkHttpClient(Class annotationClass) {
+    /**
+     * 获取一个retrofit对象，不对外提供
+     *
+     * @param annotationClass 注解Class
+     * @return 返回一个retrofit对象
+     */
+    private Retrofit getRetrofit(Class annotationClass) {
+        if (mRetrofitBuilder == null) {
+            mRetrofitBuilder = new Retrofit.Builder()
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create());
+        }
+
+        // 动态的优先
+        BaseUrlInterceptor baseUrlInterceptor = getBaseUrlDynamic(annotationClass);
+        if (baseUrlInterceptor != null) {
+            mRetrofitBuilder.baseUrl(baseUrlInterceptor.getBaseUrl());
+        } else {
+            String baseUrl = getBaseUrl(annotationClass);
+            if (!TextUtils.isEmpty(baseUrl)) {
+                mRetrofitBuilder.baseUrl(baseUrl);
+            }
+        }
+
+        mRetrofitBuilder.client(getOkHttpClient(annotationClass));
+        return mRetrofitBuilder.build();
+    }
+
+    /**
+     * 获取一个okHttpClient对象，不对外提供
+     *
+     * @param annotationClass 注解Class
+     * @return 返回一个okHttpClient对象
+     */
+    private OkHttpClient getOkHttpClient(Class annotationClass) {
         if (mOkHttpBuilder == null) {
             mOkHttpBuilder = new OkHttpClient.Builder()
                     .addNetworkInterceptor(new LoggerInterceptor())
@@ -61,22 +127,46 @@ public class RequestManager {
                     .writeTimeout(DEFAULT_WRITE_TIMEOUT, TimeUnit.SECONDS);
         }
 
-        mOkHttpBuilder.interceptors().clear();
-        mOkHttpBuilder.addInterceptor((Interceptor) getInterceptor(annotationClass));
+        Interceptor[] interceptors = getInterceptors(annotationClass);
+        if (interceptors != null) {
+            mOkHttpBuilder.interceptors().clear();
+            for (Interceptor interceptor : interceptors) {
+                mOkHttpBuilder.addInterceptor(interceptor);
+            }
+        }
 
-        return mOkHttpBuilder;
+        Interceptor[] netWorkInterceptors = getNetworkInterceptors(annotationClass);
+        if (netWorkInterceptors != null) {
+            mOkHttpBuilder.networkInterceptors().clear();
+            for (Interceptor interceptor : netWorkInterceptors) {
+                mOkHttpBuilder.addNetworkInterceptor(interceptor);
+            }
+        }
+
+        return mOkHttpBuilder.build();
     }
 
 
-    public Object getInterceptor(Class annotationClass) {
-        //扫描这个类是否使用了注解
-        if (annotationClass.isAnnotationPresent(MappingApi.class)) {
-            //得到注解
-            MappingApi mappingApi = (MappingApi) annotationClass.getAnnotation(MappingApi.class);
-            //得到注解的值
-            Class cls = mappingApi.headerInterceptor();
+    /**
+     * 根据一个注解Class获取到注解的Interceptor数组
+     *
+     * @param annotationClass 注解Class
+     * @return Interceptor数组
+     */
+    protected Interceptor[] getInterceptors(Class annotationClass) {
+        // 扫描这个类是否使用了注解
+        if (annotationClass.isAnnotationPresent(Interceptors.class)) {
+            // 得到注解
+            Interceptors interceptor = (Interceptors) annotationClass.getAnnotation(
+                    Interceptors.class);
+            // 得到注解的值
+            Class<? extends Interceptor>[] interceptorClasses = interceptor.value();
+            Interceptor[] interceptors = new Interceptor[interceptorClasses.length];
             try {
-                return cls.newInstance();
+                for (int i = 0; i < interceptorClasses.length; i++) {
+                    interceptors[i] = interceptorClasses[i].newInstance();
+                }
+                return interceptors;
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             } catch (InstantiationException e) {
@@ -86,14 +176,76 @@ public class RequestManager {
         return null;
     }
 
-    public String getBaseUrl(Class annotationClass) {
+    /**
+     * 根据一个注解Class获取到注解的NetWorkInterceptor数组
+     *
+     * @param annotationClass 注解Class
+     * @return NetWorkInterceptor数组
+     */
+    protected Interceptor[] getNetworkInterceptors(Class annotationClass) {
+        // 是否使用了注解
+        if (annotationClass.isAnnotationPresent(NetworkInterceptors.class)) {
+            // 得到注解
+            NetworkInterceptors interceptor = (NetworkInterceptors) annotationClass.getAnnotation(
+                    NetworkInterceptors.class);
+            // 得到注解的值
+            Class<? extends Interceptor>[] interceptorClasses = interceptor.value();
+            Interceptor[] interceptors = new Interceptor[interceptorClasses.length];
+            try {
+                for (int i = 0; i < interceptorClasses.length; i++) {
+                    interceptors[i] = interceptorClasses[i].newInstance();
+                }
+                return interceptors;
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 根据一个注解Class获取到注解的baseUrl
+     *
+     * @param annotationClass 注解Class
+     * @return baseUrl
+     */
+    protected String getBaseUrl(Class annotationClass) {
         //扫描这个类是否使用了注解
-        if (annotationClass.isAnnotationPresent(MappingApi.class)) {
+        if (annotationClass.isAnnotationPresent(BaseUrl.class)) {
             //得到注解
-            MappingApi mappingApi = (MappingApi) annotationClass.getAnnotation(MappingApi.class);
+            BaseUrl interceptors = (BaseUrl) annotationClass.getAnnotation(BaseUrl.class);
             //得到注解的值
-            String baseUrl = mappingApi.baseUrl();
+            String baseUrl = interceptors.value();
             return baseUrl;
+        }
+        return null;
+    }
+
+    /**
+     * 根据一个注解Class获取到注解的baseUrl
+     *
+     * @param annotationClass 注解Class
+     * @return baseUrl
+     */
+    protected BaseUrlInterceptor getBaseUrlDynamic(Class annotationClass) {
+        //扫描这个类是否使用了注解
+        if (annotationClass.isAnnotationPresent(BaseUrlDynamic.class)) {
+            //得到注解
+            BaseUrlDynamic baseUrlDynamic = (BaseUrlDynamic) annotationClass.getAnnotation(
+                    BaseUrlDynamic.class);
+            //得到注解的值
+            Class<? extends BaseUrlInterceptor> interceptor = baseUrlDynamic.value();
+
+            try {
+                BaseUrlInterceptor baseUrlInterceptor = interceptor.newInstance();
+                return baseUrlInterceptor;
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            }
         }
         return null;
     }
