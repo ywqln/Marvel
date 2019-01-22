@@ -1,7 +1,7 @@
 package com.ywqln.marvellib.net.guide;
 
 /**
- * 描述:待描述.
+ * 描述:测试注解.
  * <p>
  *
  * @author yanwenqiang.

@@ -4,7 +4,7 @@ package com.ywqln.marvellib.net;
 import android.text.TextUtils;
 
 import com.ywqln.marvellib.net.annotation.BaseUrl;
-import com.ywqln.marvellib.net.annotation.BaseUrlDynamic;
+import com.ywqln.marvellib.net.annotation.DynamicBaseUrl;
 import com.ywqln.marvellib.net.annotation.Interceptors;
 import com.ywqln.marvellib.net.annotation.NetworkInterceptors;
 import com.ywqln.marvellib.net.interceptor.BaseUrlInterceptor;
@@ -98,7 +98,7 @@ public class RequestManager {
         }
 
         // 动态的优先
-        BaseUrlInterceptor baseUrlInterceptor = getBaseUrlDynamic(annotationClass);
+        BaseUrlInterceptor baseUrlInterceptor = getDynamicBaseUrl(annotationClass);
         if (baseUrlInterceptor != null) {
             mRetrofitBuilder.baseUrl(baseUrlInterceptor.getBaseUrl());
         } else {
@@ -229,14 +229,14 @@ public class RequestManager {
      * @param annotationClass 注解Class
      * @return baseUrl
      */
-    protected BaseUrlInterceptor getBaseUrlDynamic(Class annotationClass) {
+    protected BaseUrlInterceptor getDynamicBaseUrl(Class annotationClass) {
         //扫描这个类是否使用了注解
-        if (annotationClass.isAnnotationPresent(BaseUrlDynamic.class)) {
+        if (annotationClass.isAnnotationPresent(DynamicBaseUrl.class)) {
             //得到注解
-            BaseUrlDynamic baseUrlDynamic = (BaseUrlDynamic) annotationClass.getAnnotation(
-                    BaseUrlDynamic.class);
+            DynamicBaseUrl dynamicBaseUrl = (DynamicBaseUrl) annotationClass.getAnnotation(
+                    DynamicBaseUrl.class);
             //得到注解的值
-            Class<? extends BaseUrlInterceptor> interceptor = baseUrlDynamic.value();
+            Class<? extends BaseUrlInterceptor> interceptor = dynamicBaseUrl.value();
 
             try {
                 BaseUrlInterceptor baseUrlInterceptor = interceptor.newInstance();

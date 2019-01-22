@@ -9,7 +9,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 描述:待描述.
+ * 描述:动态baseUrl.
  * <p>
  *
  * @author yanwenqiang.
@@ -18,7 +18,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface BaseUrlDynamic {
+public @interface DynamicBaseUrl {
     /**
      * 设置baseUrl，Url可能是动态获取，而不是constant类型
      *
