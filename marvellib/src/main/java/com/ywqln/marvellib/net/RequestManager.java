@@ -3,10 +3,7 @@ package com.ywqln.marvellib.net;
 
 import android.text.TextUtils;
 
-import com.ywqln.marvellib.net.annotation.BaseUrl;
-import com.ywqln.marvellib.net.annotation.DynamicBaseUrl;
-import com.ywqln.marvellib.net.annotation.Interceptors;
-import com.ywqln.marvellib.net.annotation.NetworkInterceptors;
+import com.ywqln.marvellib.net.util.AnnotationUtil;
 import com.ywqln.marvellib.net.interceptor.BaseUrlInterceptor;
 import com.ywqln.marvellib.net.interceptor.LoggerInterceptor;
 import com.ywqln.marvellib.net.util.HttpsUtil;
@@ -99,11 +96,11 @@ public class RequestManager {
         }
 
         // 动态的优先
-        BaseUrlInterceptor baseUrlInterceptor = getDynamicBaseUrl(annotationClass);
+        BaseUrlInterceptor baseUrlInterceptor = AnnotationUtil.getDynamicBaseUrl(annotationClass);
         if (baseUrlInterceptor != null) {
             mRetrofitBuilder.baseUrl(baseUrlInterceptor.getBaseUrl());
         } else {
-            String baseUrl = getBaseUrl(annotationClass);
+            String baseUrl = AnnotationUtil.getBaseUrl(annotationClass);
             if (!TextUtils.isEmpty(baseUrl)) {
                 mRetrofitBuilder.baseUrl(baseUrl);
             }
@@ -133,7 +130,7 @@ public class RequestManager {
                     .sslSocketFactory(httpsUtil.getSSLSocketFactory(), httpsUtil.getX509());
         }
 
-        Interceptor[] interceptors = getInterceptors(annotationClass);
+        Interceptor[] interceptors = AnnotationUtil.getInterceptors(annotationClass);
         if (interceptors != null) {
             mOkHttpBuilder.interceptors().clear();
             for (Interceptor interceptor : interceptors) {
@@ -141,7 +138,7 @@ public class RequestManager {
             }
         }
 
-        Interceptor[] netWorkInterceptors = getNetworkInterceptors(annotationClass);
+        Interceptor[] netWorkInterceptors = AnnotationUtil.getNetworkInterceptors(annotationClass);
         if (netWorkInterceptors != null) {
             mOkHttpBuilder.networkInterceptors().clear();
             for (Interceptor interceptor : netWorkInterceptors) {
@@ -150,109 +147,5 @@ public class RequestManager {
         }
 
         return mOkHttpBuilder.build();
-    }
-
-
-    /**
-     * 根据一个注解Class获取到注解的Interceptor数组
-     *
-     * @param annotationClass 注解Class
-     * @return Interceptor数组
-     */
-    protected Interceptor[] getInterceptors(Class annotationClass) {
-        // 扫描这个类是否使用了注解
-        if (annotationClass.isAnnotationPresent(Interceptors.class)) {
-            // 得到注解
-            Interceptors interceptor = (Interceptors) annotationClass.getAnnotation(
-                    Interceptors.class);
-            // 得到注解的值
-            Class<? extends Interceptor>[] interceptorClasses = interceptor.value();
-            Interceptor[] interceptors = new Interceptor[interceptorClasses.length];
-            try {
-                for (int i = 0; i < interceptorClasses.length; i++) {
-                    interceptors[i] = interceptorClasses[i].newInstance();
-                }
-                return interceptors;
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            }
-        }
-        return null;
-    }
-
-    /**
-     * 根据一个注解Class获取到注解的NetWorkInterceptor数组
-     *
-     * @param annotationClass 注解Class
-     * @return NetWorkInterceptor数组
-     */
-    protected Interceptor[] getNetworkInterceptors(Class annotationClass) {
-        // 是否使用了注解
-        if (annotationClass.isAnnotationPresent(NetworkInterceptors.class)) {
-            // 得到注解
-            NetworkInterceptors interceptor = (NetworkInterceptors) annotationClass.getAnnotation(
-                    NetworkInterceptors.class);
-            // 得到注解的值
-            Class<? extends Interceptor>[] interceptorClasses = interceptor.value();
-            Interceptor[] interceptors = new Interceptor[interceptorClasses.length];
-            try {
-                for (int i = 0; i < interceptorClasses.length; i++) {
-                    interceptors[i] = interceptorClasses[i].newInstance();
-                }
-                return interceptors;
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            }
-        }
-        return null;
-    }
-
-    /**
-     * 根据一个注解Class获取到注解的baseUrl
-     *
-     * @param annotationClass 注解Class
-     * @return baseUrl
-     */
-    protected String getBaseUrl(Class annotationClass) {
-        //扫描这个类是否使用了注解
-        if (annotationClass.isAnnotationPresent(BaseUrl.class)) {
-            //得到注解
-            BaseUrl interceptors = (BaseUrl) annotationClass.getAnnotation(BaseUrl.class);
-            //得到注解的值
-            String baseUrl = interceptors.value();
-            return baseUrl;
-        }
-        return null;
-    }
-
-    /**
-     * 根据一个注解Class获取到注解的baseUrl
-     *
-     * @param annotationClass 注解Class
-     * @return baseUrl
-     */
-    protected BaseUrlInterceptor getDynamicBaseUrl(Class annotationClass) {
-        //扫描这个类是否使用了注解
-        if (annotationClass.isAnnotationPresent(DynamicBaseUrl.class)) {
-            //得到注解
-            DynamicBaseUrl dynamicBaseUrl = (DynamicBaseUrl) annotationClass.getAnnotation(
-                    DynamicBaseUrl.class);
-            //得到注解的值
-            Class<? extends BaseUrlInterceptor> interceptor = dynamicBaseUrl.value();
-
-            try {
-                BaseUrlInterceptor baseUrlInterceptor = interceptor.newInstance();
-                return baseUrlInterceptor;
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            }
-        }
-        return null;
     }
 }

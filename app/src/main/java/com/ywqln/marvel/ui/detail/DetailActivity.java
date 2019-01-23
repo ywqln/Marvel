@@ -13,6 +13,7 @@ import com.ywqln.marvel.databinding.ActivityDetailBinding;
 import com.ywqln.marvellib.base.ui.BaseActivity;
 import com.ywqln.marvellib.net.RequestManager;
 import com.ywqln.marvellib.net.guide.NewsApi;
+import com.ywqln.marvellib.net.guide.TestAnnotation;
 import com.ywqln.marvellib.net.guide.dto.response.NewsResp;
 import com.ywqln.marvellib.net.guide.dto.response.model.News;
 
@@ -70,6 +71,7 @@ public class DetailActivity extends BaseActivity implements IDetailEventHandler 
         mViewModel.updateHero();
         mBinding.setViewModel(mViewModel);
 
+        new TestAnnotation().testAnnotation();
 //        getNews();
     }
 

@@ -8,6 +8,7 @@ package com.ywqln.marvellib.net.interceptor;
  * @date 2019/1/22
  */
 public interface BaseUrlInterceptor {
+
     /**
      * 获取baseUrl
      *
