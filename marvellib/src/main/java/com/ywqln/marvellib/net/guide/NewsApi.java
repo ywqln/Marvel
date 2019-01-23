@@ -14,12 +14,11 @@ import retrofit2.http.Query;
 /**
  * 描述:新闻相关接口.
  * <p>
- * "http://toutiao-ali.juheapi.com"
  *
  * @author yanwenqiang.
  * @date 2019/1/21
  */
-@BaseUrl("http://toutiao-ali.juheapi.con")
+@BaseUrl("http://toutiao-ali.juheapi.cn")
 @DynamicBaseUrl(NewsBaseUrlInterceptor.class)
 @Interceptors(NewsHeaderInterceptor.class)
 public interface NewsApi {

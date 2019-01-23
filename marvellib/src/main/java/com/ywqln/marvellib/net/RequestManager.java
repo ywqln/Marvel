@@ -9,6 +9,7 @@ import com.ywqln.marvellib.net.annotation.Interceptors;
 import com.ywqln.marvellib.net.annotation.NetworkInterceptors;
 import com.ywqln.marvellib.net.interceptor.BaseUrlInterceptor;
 import com.ywqln.marvellib.net.interceptor.LoggerInterceptor;
+import com.ywqln.marvellib.net.util.HttpsUtil;
 
 import java.util.concurrent.TimeUnit;
 
@@ -120,11 +121,16 @@ public class RequestManager {
      */
     private OkHttpClient getOkHttpClient(Class annotationClass) {
         if (mOkHttpBuilder == null) {
+            HttpsUtil httpsUtil = new HttpsUtil();
             mOkHttpBuilder = new OkHttpClient.Builder()
                     .addNetworkInterceptor(new LoggerInterceptor())
                     .connectTimeout(DEFAULT_CONNECT_TIMEOUT, TimeUnit.SECONDS)
                     .readTimeout(DEFAULT_READ_TIMEOUT, TimeUnit.SECONDS)
-                    .writeTimeout(DEFAULT_WRITE_TIMEOUT, TimeUnit.SECONDS);
+                    .writeTimeout(DEFAULT_WRITE_TIMEOUT, TimeUnit.SECONDS)
+                    // 添加https支持
+                    .hostnameVerifier(httpsUtil.hostNameVerifier())
+                    // ssl
+                    .sslSocketFactory(httpsUtil.getSSLSocketFactory(), httpsUtil.getX509());
         }
 
         Interceptor[] interceptors = getInterceptors(annotationClass);
