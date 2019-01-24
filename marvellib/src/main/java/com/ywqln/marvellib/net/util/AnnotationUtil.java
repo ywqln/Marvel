@@ -1,10 +1,10 @@
 package com.ywqln.marvellib.net.util;
 
 import com.ywqln.marvellib.net.annotation.BaseUrl;
-import com.ywqln.marvellib.net.annotation.DynamicBaseUrl;
 import com.ywqln.marvellib.net.annotation.Interceptors;
 import com.ywqln.marvellib.net.annotation.NetworkInterceptors;
 import com.ywqln.marvellib.net.interceptor.BaseUrlInterceptor;
+import com.ywqln.marvellib.utils.StringUtil;
 
 import okhttp3.Interceptor;
 
@@ -85,36 +85,24 @@ public class AnnotationUtil {
         // 扫描这个类是否使用了注解
         if (annotationClass.isAnnotationPresent(BaseUrl.class)) {
             // 得到注解
-            BaseUrl interceptors = (BaseUrl) annotationClass.getAnnotation(BaseUrl.class);
+            BaseUrl baseUrl = (BaseUrl) annotationClass.getAnnotation(BaseUrl.class);
             // 得到注解的值
-            String baseUrl = interceptors.value();
-            return baseUrl;
-        }
-        return null;
-    }
+            String value = baseUrl.value();
+            if (!StringUtil.isNullOrEmpty(value)) {
+                return value;
+            }
 
-    /**
-     * 根据一个注解Class获取到注解的baseUrl
-     *
-     * @param annotationClass 注解Class
-     * @return baseUrl
-     */
-    public static final BaseUrlInterceptor getDynamicBaseUrl(Class annotationClass) {
-        // 扫描这个类是否使用了注解
-        if (annotationClass.isAnnotationPresent(DynamicBaseUrl.class)) {
-            // 得到注解
-            DynamicBaseUrl dynamicBaseUrl = (DynamicBaseUrl) annotationClass.getAnnotation(
-                    DynamicBaseUrl.class);
-            // 得到注解的值
-            Class<? extends BaseUrlInterceptor> interceptor = dynamicBaseUrl.value();
-
+            Class<? extends BaseUrlInterceptor> interceptor = baseUrl.dynamic();
+            BaseUrlInterceptor instance = null;
             try {
-                BaseUrlInterceptor baseUrlInterceptor = interceptor.newInstance();
-                return baseUrlInterceptor;
+                instance = interceptor.newInstance();
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             } catch (InstantiationException e) {
                 e.printStackTrace();
+            }
+            if (instance != null) {
+                return instance.getBaseUrl();
             }
         }
         return null;

@@ -1,5 +1,7 @@
 package com.ywqln.marvellib.net.annotation;
 
+import com.ywqln.marvellib.net.interceptor.BaseUrlInterceptor;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -23,4 +25,11 @@ public @interface BaseUrl {
      * @return 返回baseUrl
      */
     String value() default "";
+
+    /**
+     * 设置baseUrl，通过传入一个实现BaseUrlInterceptor接口的类来实现动态设置baseUrl，避开注解必须是常量值.
+     *
+     * @return 返回一个继承BaseUrlInterceptor的类
+     */
+    Class<? extends BaseUrlInterceptor> dynamic() default BaseUrlInterceptor.class;
 }

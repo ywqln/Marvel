@@ -18,10 +18,28 @@ public class StringUtil {
      */
     public static final String Space = " ";
 
+    /**
+     * 检查字符串，如果是null对象就赋值为空字符串{@link Empty}
+     *
+     * @param value 被检查字符串
+     * @return 如果是不是null对象，就返回传入内容
+     */
     public static final String nullToEmpty(String value) {
         if (value == null) {
             value = Empty;
         }
         return value;
+    }
+
+    /**
+     * 检查字符串是不是null或者空字符串{@link Empty}
+     *
+     * @param value 被检查字符串
+     * @return 检查结果
+     */
+    public static final boolean isNullOrEmpty(String value) {
+        if (null == value) return true;
+        if (value.equals(Empty)) return true;
+        return false;
     }
 }

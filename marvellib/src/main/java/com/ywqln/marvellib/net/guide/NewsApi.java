@@ -1,7 +1,6 @@
 package com.ywqln.marvellib.net.guide;
 
 import com.ywqln.marvellib.net.annotation.BaseUrl;
-import com.ywqln.marvellib.net.annotation.DynamicBaseUrl;
 import com.ywqln.marvellib.net.annotation.Interceptors;
 import com.ywqln.marvellib.net.guide.dto.response.NewsResp;
 import com.ywqln.marvellib.net.guide.interceptor.NewsBaseUrlInterceptor;
@@ -18,8 +17,7 @@ import retrofit2.http.Query;
  * @author yanwenqiang.
  * @date 2019/1/21
  */
-@BaseUrl("http://toutiao-ali.juheapi.cn")
-@DynamicBaseUrl(NewsBaseUrlInterceptor.class)
+@BaseUrl(value = "http://toutiao-ali.juheapi.cn", dynamic = NewsBaseUrlInterceptor.class)
 @Interceptors(NewsHeaderInterceptor.class)
 public interface NewsApi {
 

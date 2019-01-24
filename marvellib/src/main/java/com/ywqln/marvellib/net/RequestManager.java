@@ -3,9 +3,8 @@ package com.ywqln.marvellib.net;
 
 import android.text.TextUtils;
 
-import com.ywqln.marvellib.net.util.AnnotationUtil;
-import com.ywqln.marvellib.net.interceptor.BaseUrlInterceptor;
 import com.ywqln.marvellib.net.interceptor.LoggerInterceptor;
+import com.ywqln.marvellib.net.util.AnnotationUtil;
 import com.ywqln.marvellib.net.util.HttpsUtil;
 
 import java.util.concurrent.TimeUnit;
@@ -95,15 +94,9 @@ public class RequestManager {
                     .addConverterFactory(GsonConverterFactory.create());
         }
 
-        // 动态的优先
-        BaseUrlInterceptor baseUrlInterceptor = AnnotationUtil.getDynamicBaseUrl(annotationClass);
-        if (baseUrlInterceptor != null) {
-            mRetrofitBuilder.baseUrl(baseUrlInterceptor.getBaseUrl());
-        } else {
-            String baseUrl = AnnotationUtil.getBaseUrl(annotationClass);
-            if (!TextUtils.isEmpty(baseUrl)) {
-                mRetrofitBuilder.baseUrl(baseUrl);
-            }
+        String baseUrl = AnnotationUtil.getBaseUrl(annotationClass);
+        if (!TextUtils.isEmpty(baseUrl)) {
+            mRetrofitBuilder.baseUrl(baseUrl);
         }
 
         mRetrofitBuilder.client(getOkHttpClient(annotationClass));
