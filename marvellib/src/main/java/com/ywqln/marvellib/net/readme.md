@@ -155,6 +155,8 @@ public class Service {
 ## 思考
 - connectTimeout 和 readTimeout 和 writeTimeout 区别
 - addInterceptor 和 addNetworkInterceptor 区别
+- 返回数据流转使用注解
+- flatMap
 - 列表展示
 - mvp
 - RxPermission

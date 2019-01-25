@@ -16,6 +16,7 @@ import com.ywqln.marvellib.net.guide.NewsApi;
 import com.ywqln.marvellib.net.guide.TestAnnotation;
 import com.ywqln.marvellib.net.guide.dto.response.NewsResp;
 import com.ywqln.marvellib.net.guide.dto.response.model.News;
+import com.ywqln.marvellib.utils.WLog;
 
 import java.util.List;
 
@@ -46,6 +47,12 @@ public class DetailActivity extends BaseActivity implements IDetailEventHandler 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+        debounceClick(toolbar).subscribe(o -> {
+            WLog.p("点击一次");
+            mNotificationBuilder.setMessage("点击一次").show();
+        });
     }
 
     @Override
