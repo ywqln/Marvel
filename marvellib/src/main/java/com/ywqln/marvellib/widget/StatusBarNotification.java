@@ -1,6 +1,7 @@
 package com.ywqln.marvellib.widget;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.util.TypedValue;
@@ -9,8 +10,11 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.lang.reflect.Field;
 
 /**
  * 描述:顶部通知.
@@ -51,10 +55,13 @@ public class StatusBarNotification {
         messageTextView.setTextColor(mBuilder.textColor);
         messageTextView.setGravity(Gravity.CENTER);
         messageTextView.setTextSize(mBuilder.textSize);
+
+        int status = getStatusBarHeight(mBuilder.mActivity);
         if (mBuilder.getHeight() > 0) {
-            messageTextView.setHeight(mBuilder.getHeight());
+            messageTextView.setPadding(0, status, 0, 0);
+            messageTextView.setHeight(mBuilder.getHeight() + status);
         } else {
-            messageTextView.setPadding(0, mBuilder.verticalMargin, 0, mBuilder.verticalMargin);
+            messageTextView.setPadding(0, mBuilder.verticalMargin + status, 0, mBuilder.verticalMargin);
         }
         messageTextView.setText(mBuilder.getMessage());
         mContainer.addView(messageTextView, textViewParam);
@@ -94,7 +101,31 @@ public class StatusBarNotification {
         layoutParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY;
         layoutParams.gravity = Gravity.TOP;
         mContainer.setGravity(Gravity.CENTER);
-        mBuilder.mActivity.getWindow().addContentView(mContainer, layoutParams);
+//        mBuilder.mActivity.getWindow().addContentView(mContainer, layoutParams);
+
+        FrameLayout layout = (FrameLayout) mBuilder.mActivity.getWindow().getDecorView();
+        layout.addView(mContainer, layoutParams);
+    }
+
+    private int getStatusBarHeight(Context context) {
+        Class<?> c = null;
+        Object obj = null;
+        Field field = null;
+        int x = 0, sbar = 0;
+
+        try {
+
+            c = Class.forName("com.android.internal.R$dimen");
+            obj = c.newInstance();
+
+            field = c.getField("status_bar_height");
+            x = Integer.parseInt(field.get(obj).toString());
+            sbar = context.getResources().getDimensionPixelSize(x);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return sbar;
     }
 
     public boolean isShow() {
