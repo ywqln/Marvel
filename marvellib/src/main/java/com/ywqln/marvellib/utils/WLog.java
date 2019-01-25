@@ -1,11 +1,12 @@
 package com.ywqln.marvellib.utils;
 
-import static com.orhanobut.logger.Logger.t;
-
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
-import com.orhanobut.logger.Printer;
+import com.orhanobut.logger.PrettyFormatStrategy;
 
 /**
  * 描述:打印工具.
@@ -15,26 +16,63 @@ import com.orhanobut.logger.Printer;
  * @date 2019/1/21
  */
 public class WLog {
-
-    public static final String DEBUG_TAG = "marvel";
-    private static boolean mDebug = false;
+    private static final String TAG = "marvel";
+    private static PrettyFormatStrategy.Builder mBuilder;
+    private static boolean mEnable = false;
 
     static {
-        Logger.init(DEBUG_TAG).methodCount(0).hideThreadInfo();
+        init();
+    }
+
+    private static final void init() {
+        mBuilder = PrettyFormatStrategy.newBuilder()
+                // 是否显示线程信息。 默认值为true
+                .showThreadInfo(true)
+                // 要显示的方法行数。 默认2
+                .methodCount(2)
+                // 隐藏内部方法调用到偏移量。 默认0
+                .methodOffset(0)
+                // 每个日志的全局标记。 默认PRETTY_LOGGER
+                .tag(TAG);
+
+        // 根据上面的格式设置logger相应的适配器
+        Logger.addLogAdapter(new AndroidLogAdapter(mBuilder.build()));
+        // 保存到文件
+        // Logger.addLogAdapter(DiskLogAdapter());
+    }
+
+    public static void strategy(Strategy strategy) {
+        mBuilder = PrettyFormatStrategy.newBuilder()
+                // 是否显示线程信息。 默认值为true
+                .showThreadInfo(strategy.showThreadInfo)
+                // 要显示的方法行数。 默认2
+                .methodCount(strategy.methodCount)
+                // 隐藏内部方法调用到偏移量。 默认5
+                .methodOffset(strategy.methodOffset)
+                // 每个日志的全局标记。 默认PRETTY_LOGGER
+                .tag(strategy.tag);
+
+        // 根据上面的格式设置logger相应的适配器
+        Logger.clearLogAdapters();
+        Logger.addLogAdapter(new AndroidLogAdapter(mBuilder.build()));
     }
 
     /**
      * set debug
      */
-    public static void setDebug(boolean debug) {
-        mDebug = debug;
+    public static void setEnable(boolean debug) {
+        mEnable = debug;
     }
 
     /**
      * isDebug
      */
-    public static boolean debug() {
-        return mDebug;
+    public static boolean isEnable() {
+        return mEnable;
+    }
+
+    protected static boolean checkLogAble() {
+        return mEnable;
     }
 
 
@@ -44,8 +82,9 @@ public class WLog {
      * @param obj 打印内容
      */
     public static void p(Object obj) {
-        if (checkLogAble() && obj != null)
+        if (checkLogAble() && obj != null) {
             Logger.d(obj.toString());
+        }
     }
 
     /**
@@ -55,31 +94,18 @@ public class WLog {
      * @param obj 打印内容
      */
     public static void p(String tag, Object obj) {
-        if (checkLogAble() && obj != null)
-            setPrinter(tag, -1).d(obj.toString());
+        if (checkLogAble() && obj != null) {
+            Logger.t(tag).d(obj.toString());
+        }
     }
-
-    /**
-     * 普通debug日志
-     *
-     * @param tag         标记
-     * @param obj         打印内容
-     * @param methodCount 堆栈方法数量
-     */
-    public static void p(String tag, Object obj, int methodCount) {
-        if (checkLogAble() && obj != null)
-            setPrinter(tag, methodCount).d(obj.toString());
-    }
-
 
     /**
      * 格式化打印json串
-     *
-     * @param json
      */
     public static void json(Object json) {
-        if (checkLogAble() && json != null)
+        if (checkLogAble() && json != null) {
             Logger.json(json.toString());
+        }
     }
 
     /**
@@ -89,22 +115,10 @@ public class WLog {
      * @param json 打印json内容
      */
     public static void json(String tag, Object json) {
-        if (checkLogAble() && json != null)
-            setPrinter(tag, -1).json(json.toString());
+        if (checkLogAble() && json != null) {
+            Logger.t(tag).json(json.toString());
+        }
     }
-
-    /**
-     * 格式化打印json串
-     *
-     * @param tag         标记
-     * @param json        打印json内容
-     * @param methodCount 堆栈方法数量
-     */
-    public static void json(String tag, Object json, int methodCount) {
-        if (checkLogAble() && json != null)
-            setPrinter(tag, methodCount).json(json.toString());
-    }
-
 
     /**
      * 错误日志
@@ -112,8 +126,9 @@ public class WLog {
      * @param obj 打印内容
      */
     public static void e(Object obj) {
-        if (checkLogAble() && obj != null)
+        if (checkLogAble() && obj != null) {
             Logger.e(obj.toString());
+        }
     }
 
     /**
@@ -123,53 +138,66 @@ public class WLog {
      * @param obj 打印内容
      */
     public static void e(String tag, Object obj) {
-        if (checkLogAble() && obj != null)
-            setPrinter(tag, -1).e(obj.toString());
+        if (checkLogAble() && obj != null) {
+            Logger.t(tag).e(tag, obj.toString());
+        }
     }
-
-    /**
-     * 错误日志
-     *
-     * @param tag         标记
-     * @param obj         打印内容
-     * @param methodCount 堆栈方法数量
-     */
-    public static void e(String tag, Object obj, int methodCount) {
-        if (checkLogAble() && obj != null)
-            setPrinter(tag, methodCount).e(obj.toString());
-    }
-
 
     /**
      * 原生打印
-     *
-     * @param obj
      */
     public static void nativeLog(Object obj) {
-        if (checkLogAble() && obj != null)
-            Log.d(DEBUG_TAG, obj.toString());
+        if (checkLogAble() && obj != null) {
+            Log.d(TAG, obj.toString());
+        }
     }
 
     /**
      * 原生打印
-     *
-     * @param obj
      */
     public static void nativeLog(String tag, Object obj) {
-        if (checkLogAble() && obj != null)
+        if (checkLogAble() && obj != null) {
             Log.d(tag, obj.toString());
+        }
     }
 
 
-    protected static Printer setPrinter(String tag, int methodCount) {
-        if (methodCount > 0)
-            return t(tag, methodCount);
-        else
-            return t(tag, 0);
-    }
+    /**
+     * 策略
+     */
+    public static class Strategy {
+        int methodCount = 2;
+        int methodOffset = 1;
+        boolean showThreadInfo = true;
+        @Nullable
+        String tag = "marvel";
 
-    protected static boolean checkLogAble() {
-        return mDebug;
+        public Strategy() {
+        }
+
+        @NonNull
+        public Strategy methodCount(int val) {
+            methodCount = val;
+            return this;
+        }
+
+        @NonNull
+        public Strategy methodOffset(int val) {
+            methodOffset = val;
+            return this;
+        }
+
+        @NonNull
+        public Strategy showThreadInfo(boolean val) {
+            showThreadInfo = val;
+            return this;
+        }
+
+        @NonNull
+        public Strategy tag(@Nullable String tag) {
+            this.tag = tag;
+            return this;
+        }
     }
 }
 

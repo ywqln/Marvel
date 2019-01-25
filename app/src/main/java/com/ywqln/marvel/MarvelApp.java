@@ -1,6 +1,7 @@
 package com.ywqln.marvel;
 
 import com.ywqln.marvellib.base.BaseApplication;
+import com.ywqln.marvellib.utils.WLog;
 
 /**
  * 描述：应用 Application
@@ -13,5 +14,7 @@ public class MarvelApp extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        WLog.strategy(new WLog.Strategy().tag("ywq"));
+        WLog.setEnable(true);
     }
 }

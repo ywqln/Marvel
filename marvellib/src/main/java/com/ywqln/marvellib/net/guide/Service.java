@@ -79,13 +79,4 @@ public class Service {
 
 
     }
-
-    public void okHttpSetting(){
-//        OkHttpClient okClient = new OkHttpClient();
-//        mOkBuilder = new OkHttpClient.Builder()
-//                .addNetworkInterceptor(new LoggingInterceptor())
-//                .connectTimeout(DEFAULT_CONNECT_TIMEOUT, TimeUnit.SECONDS)
-//                .readTimeout(DEFAULT_READ_TIMEOUT, TimeUnit.SECONDS)
-//                .writeTimeout(DEFAULT_WRITE_TIMEOUT, TimeUnit.SECONDS);
-    }
 }
