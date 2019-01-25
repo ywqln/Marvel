@@ -32,46 +32,6 @@ public class StatusBarNotification {
         mBuilder = builder;
     }
 
-    public StatusBarNotification setMessage(String message) {
-        mBuilder.setMessage(message);
-        return this;
-    }
-
-    public StatusBarNotification setTextSize(float textSize) {
-        mBuilder.setTextSize(textSize);
-        return this;
-    }
-
-    public StatusBarNotification setTextColor(int color) {
-        mBuilder.setTextColor(color);
-        return this;
-    }
-
-    public StatusBarNotification setBgColor(int color) {
-        mBuilder.setBgColor(color);
-        return this;
-    }
-
-    public StatusBarNotification setDisplayDelayed(long displayDelayed) {
-        mBuilder.setDisplayDelayed(displayDelayed);
-        return this;
-    }
-
-    public StatusBarNotification setAnimationDuration(long animationDuration) {
-        mBuilder.setAnimationDuration(animationDuration);
-        return this;
-    }
-
-    public StatusBarNotification setVerticalMargin(int verticalMargin) {
-        mBuilder.setVerticalMargin(verticalMargin);
-        return this;
-    }
-
-    public StatusBarNotification setHeight(int height) {
-        mBuilder.setHeight(mBuilder.dp2px(height));
-        return this;
-    }
-
     public void show() {
         startTime = System.currentTimeMillis();
         addContainer();
