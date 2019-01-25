@@ -1,5 +1,7 @@
 package com.ywqln.marvellib.net.guide;
 
+import com.ywqln.marvellib.net.annotation.BaseUrl;
+import com.ywqln.marvellib.net.annotation.Interceptors;
 import com.ywqln.marvellib.net.guide.dto.response.ResultResp;
 
 import java.util.List;
@@ -17,6 +19,8 @@ import retrofit2.http.Query;
  * @author yanwenqiang
  * @date 2019/1/19
  */
+@BaseUrl("http://yyy.www.qqq")
+@Interceptors(ResultResp.class)
 public interface MyApi {
      /**
      * 根据学号获取某个学生信息
