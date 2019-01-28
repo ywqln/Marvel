@@ -101,7 +101,6 @@ public class StatusBarNotification {
         layoutParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY;
         layoutParams.gravity = Gravity.TOP;
         mContainer.setGravity(Gravity.CENTER);
-//        mBuilder.mActivity.getWindow().addContentView(mContainer, layoutParams);
 
         FrameLayout layout = (FrameLayout) mBuilder.mActivity.getWindow().getDecorView();
         layout.addView(mContainer, layoutParams);
