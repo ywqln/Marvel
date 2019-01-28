@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.ywqln.marvellib.utils.CheckVirtualUtil;
 import com.ywqln.marvel.R;
 import com.ywqln.marvel.databinding.ActivityDetailBinding;
 import com.ywqln.marvellib.base.ui.BaseActivity;
@@ -80,6 +81,10 @@ public class DetailActivity extends BaseActivity implements IDetailEventHandler 
 
         new TestAnnotation().testAnnotation();
 //        getNews();
+
+        if (CheckVirtualUtil.isRunInVirtual()) {
+            mNotificationBuilder.setMessage("非法操作！").show();
+        }
     }
 
     private void getNews() {
