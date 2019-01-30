@@ -25,7 +25,7 @@ public abstract class ResponseObserver<T> implements Observer<T> {
     public void onError(Throwable e) {
         if (e instanceof HttpException) {
             int errorCode = ((HttpException) e).code();
-            onFail(new ResponseException(errorCode, getMsgForCode(errorCode)));
+            onFail(new ResponseException(errorCode, getMsgByCode(errorCode)));
         } else if (e instanceof ResponseException) {
             onFail((ResponseException) e);
         } else {
@@ -34,7 +34,13 @@ public abstract class ResponseObserver<T> implements Observer<T> {
         onComplete();
     }
 
-    protected String getMsgForCode(int code) {
+    /**
+     * 根据状态码获取消息
+     *
+     * @param code 状态码
+     * @return 消息
+     */
+    protected String getMsgByCode(int code) {
         String msg = StringUtil.Empty;
         switch (code) {
             case 404:
@@ -54,8 +60,17 @@ public abstract class ResponseObserver<T> implements Observer<T> {
         return msg;
     }
 
-
+    /**
+     * 数据成功返回
+     *
+     * @param result 数据
+     */
     protected abstract void onSuccess(T result);
 
+    /**
+     * 响应失败
+     *
+     * @param responseException 响应异常
+     */
     protected abstract void onFail(ResponseException responseException);
 }

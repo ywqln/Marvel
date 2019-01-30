@@ -80,7 +80,7 @@ public class DetailActivity extends BaseActivity implements IDetailEventHandler 
         mBinding.setViewModel(mViewModel);
 
         new TestAnnotation().testAnnotation();
-//        getNews();
+        getNews();
         getNews4Simple();
 
         if (CheckVirtualUtil.isRunInVirtual()) {
@@ -98,7 +98,6 @@ public class DetailActivity extends BaseActivity implements IDetailEventHandler 
                 .subscribe(new ResponseObserver<NewsResult>() {
                     @Override
                     protected void onSuccess(NewsResult result) {
-                        int stop = 0;
                         mNotificationBuilder.setMessage("有数据").show();
                     }
 
@@ -127,7 +126,6 @@ public class DetailActivity extends BaseActivity implements IDetailEventHandler 
                 .subscribe(new SimpleObserver<NewsResult>() {
                     @Override
                     protected void onSuccess(NewsResult result) {
-                        int stop = 0;
                         mNotificationBuilder.setMessage("有数据").show();
                     }
 

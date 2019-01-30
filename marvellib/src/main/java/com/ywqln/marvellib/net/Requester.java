@@ -26,7 +26,7 @@ public class Requester {
     private final static long DEFAULT_CONNECT_TIMEOUT = 15;
     private final static long DEFAULT_READ_TIMEOUT = 15;
     private final static long DEFAULT_WRITE_TIMEOUT = 15;
-    private static Requester sRequester;
+    private static Requester mRequester;
 
     /**
      * okHttpBuilder
@@ -48,10 +48,10 @@ public class Requester {
      * 得到一个RequestManager对象，保证唯一性
      */
     public static Requester instance() {
-        if (sRequester == null) {
-            sRequester = new Requester();
+        if (mRequester == null) {
+            mRequester = new Requester();
         }
-        return sRequester;
+        return mRequester;
     }
 
     /**
