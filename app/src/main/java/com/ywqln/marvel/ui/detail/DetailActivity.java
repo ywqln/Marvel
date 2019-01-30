@@ -11,13 +11,13 @@ import android.view.View;
 
 import com.ywqln.marvel.R;
 import com.ywqln.marvel.databinding.ActivityDetailBinding;
-import com.ywqln.marvel.net.NewsTransformer;
+import com.ywqln.marvel.net.guide.NewsApi;
+import com.ywqln.marvel.net.guide.NewsTransformer;
+import com.ywqln.marvel.net.guide.dto.response.model.NewsResult;
+import com.ywqln.marvel.net.test.TestAnnotation;
 import com.ywqln.marvellib.base.ui.BaseActivity;
 import com.ywqln.marvellib.net.Requester;
 import com.ywqln.marvellib.net.exception.ResponseException;
-import com.ywqln.marvel.net.guide.NewsApi;
-import com.ywqln.marvel.net.test.TestAnnotation;
-import com.ywqln.marvel.net.guide.dto.response.model.NewsResult;
 import com.ywqln.marvellib.net.observer.ResponseObserver;
 import com.ywqln.marvellib.net.observer.SimpleObserver;
 import com.ywqln.marvellib.net.tranformer.ApiThreadTransformer;
