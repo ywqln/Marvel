@@ -1,8 +1,8 @@
-package com.ywqln.marvellib.net.guide;
+package com.ywqln.marvel.net.test;
 
 import com.ywqln.marvellib.net.annotation.BaseUrl;
 import com.ywqln.marvellib.net.annotation.Interceptors;
-import com.ywqln.marvellib.net.guide.dto.response.ResultResp;
+import com.ywqln.marvel.net.guide.dto.response.ResultResp;
 
 import java.util.List;
 

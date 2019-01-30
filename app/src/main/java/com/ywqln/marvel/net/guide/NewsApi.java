@@ -1,11 +1,11 @@
-package com.ywqln.marvellib.net.guide;
+package com.ywqln.marvel.net.guide;
 
 import com.ywqln.marvellib.net.annotation.BaseUrl;
 import com.ywqln.marvellib.net.annotation.Interceptors;
-import com.ywqln.marvellib.net.guide.dto.response.NewsResp;
-import com.ywqln.marvellib.net.guide.dto.response.model.NewsResult;
-import com.ywqln.marvellib.net.guide.interceptor.NewsBaseUrlInterceptor;
-import com.ywqln.marvellib.net.guide.interceptor.NewsHeaderInterceptor;
+import com.ywqln.marvel.net.guide.dto.response.NewsResp;
+import com.ywqln.marvel.net.guide.dto.response.model.NewsResult;
+import com.ywqln.marvel.net.guide.interceptor.NewsBaseUrlInterceptor;
+import com.ywqln.marvel.net.guide.interceptor.NewsHeaderInterceptor;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;

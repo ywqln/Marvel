@@ -1,4 +1,4 @@
-package com.ywqln.marvellib.net.guide.dto.response;
+package com.ywqln.marvel.net.guide.dto.response;
 
 import java.io.IOException;
 

@@ -13,12 +13,13 @@ import com.ywqln.marvel.R;
 import com.ywqln.marvel.databinding.ActivityDetailBinding;
 import com.ywqln.marvel.net.NewsTransformer;
 import com.ywqln.marvellib.base.ui.BaseActivity;
-import com.ywqln.marvellib.net.RequestManager;
-import com.ywqln.marvellib.net.exception.ApiException;
-import com.ywqln.marvellib.net.guide.NewsApi;
-import com.ywqln.marvellib.net.guide.TestAnnotation;
-import com.ywqln.marvellib.net.guide.dto.response.model.NewsResult;
+import com.ywqln.marvellib.net.Requester;
+import com.ywqln.marvellib.net.exception.ResponseException;
+import com.ywqln.marvel.net.guide.NewsApi;
+import com.ywqln.marvel.net.test.TestAnnotation;
+import com.ywqln.marvel.net.guide.dto.response.model.NewsResult;
 import com.ywqln.marvellib.net.observer.ResponseObserver;
+import com.ywqln.marvellib.net.observer.SimpleObserver;
 import com.ywqln.marvellib.net.tranformer.ApiThreadTransformer;
 import com.ywqln.marvellib.utils.CheckVirtualUtil;
 import com.ywqln.marvellib.utils.WLog;
@@ -79,7 +80,8 @@ public class DetailActivity extends BaseActivity implements IDetailEventHandler 
         mBinding.setViewModel(mViewModel);
 
         new TestAnnotation().testAnnotation();
-        getNews();
+//        getNews();
+        getNews4Simple();
 
         if (CheckVirtualUtil.isRunInVirtual()) {
             mNotificationBuilder.setMessage("非法操作！").show();
@@ -89,7 +91,7 @@ public class DetailActivity extends BaseActivity implements IDetailEventHandler 
     private void getNews() {
         AlertDialog alertDialog = new AlertDialog.Builder(this).setMessage("等待...").create();
 
-        RequestManager.instance().getApi(NewsApi.class)
+        Requester.instance().getApi(NewsApi.class)
                 .getNews("yule")
                 .compose(new ApiThreadTransformer<>())
                 .compose(new NewsTransformer<>())
@@ -101,8 +103,8 @@ public class DetailActivity extends BaseActivity implements IDetailEventHandler 
                     }
 
                     @Override
-                    protected void onFail(ApiException apiException) {
-                        mNotificationBuilder.setMessage(apiException.message).show();
+                    protected void onFail(ResponseException responseException) {
+                        mNotificationBuilder.setMessage(responseException.message).show();
                     }
 
                     @Override
@@ -113,6 +115,26 @@ public class DetailActivity extends BaseActivity implements IDetailEventHandler 
                     @Override
                     public void onComplete() {
                         alertDialog.dismiss();
+                    }
+                });
+    }
+
+    private void getNews4Simple() {
+        Requester.instance().getApi(NewsApi.class)
+                .getNews("top")
+                .compose(new ApiThreadTransformer<>())
+                .compose(new NewsTransformer<>())
+                .subscribe(new SimpleObserver<NewsResult>() {
+                    @Override
+                    protected void onSuccess(NewsResult result) {
+                        int stop = 0;
+                        mNotificationBuilder.setMessage("有数据").show();
+                    }
+
+                    @Override
+                    protected void onFail(ResponseException responseException) {
+                        mNotificationBuilder.setMessage(
+                                responseException.message).show();
                     }
                 });
     }

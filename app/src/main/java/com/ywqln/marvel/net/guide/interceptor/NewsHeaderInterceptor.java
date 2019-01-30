@@ -1,4 +1,4 @@
-package com.ywqln.marvellib.net.guide.interceptor;
+package com.ywqln.marvel.net.guide.interceptor;
 
 import com.ywqln.marvellib.net.interceptor.BaseUrlInterceptor;
 

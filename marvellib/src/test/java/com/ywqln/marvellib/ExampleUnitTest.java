@@ -2,7 +2,7 @@ package com.ywqln.marvellib;
 
 import static org.junit.Assert.assertEquals;
 
-import com.ywqln.marvellib.net.guide.TestAnnotation;
+import com.ywqln.marvel.net.guide.TestAnnotation;
 
 import org.junit.Test;
 

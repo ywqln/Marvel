@@ -27,7 +27,7 @@ android {
     productFlavors {
         beta {
             minSdkVersion build_versions.min_sdk
-            applicationId 'com.ywqln.marvelDev'
+            applicationId 'com.ywqln.marveldev'
             targetSdkVersion build_versions.target_sdk
             versionCode 1
             versionName '1.0'

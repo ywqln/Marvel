@@ -61,7 +61,8 @@ public class StatusBarNotification {
             messageTextView.setPadding(0, status, 0, 0);
             messageTextView.setHeight(mBuilder.getHeight() + status);
         } else {
-            messageTextView.setPadding(0, mBuilder.verticalMargin + status, 0, mBuilder.verticalMargin);
+            messageTextView.setPadding(0, mBuilder.verticalMargin + status, 0,
+                    mBuilder.verticalMargin);
         }
         messageTextView.setText(mBuilder.getMessage());
         mContainer.addView(messageTextView, textViewParam);
@@ -197,6 +198,24 @@ public class StatusBarNotification {
         public Builder(Activity activity) {
             this.mActivity = activity;
             setHeight(56);
+        }
+
+        public Builder warningStyle() {
+            bgColor = Color.argb(200, 190, 170, 80);
+            textColor = Color.WHITE;
+            return this;
+        }
+
+        public Builder errorStyle() {
+            bgColor = Color.argb(200, 250, 50, 15);
+            textColor = Color.WHITE;
+            return this;
+        }
+
+        public Builder tipStyle() {
+            bgColor = Color.argb(200, 66, 66, 66);
+            textColor = Color.WHITE;
+            return this;
         }
 
         public StatusBarNotification build() {

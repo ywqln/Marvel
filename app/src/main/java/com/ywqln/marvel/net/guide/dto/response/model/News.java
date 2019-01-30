@@ -1,4 +1,4 @@
-package com.ywqln.marvellib.net.guide.dto.response.model;
+package com.ywqln.marvel.net.guide.dto.response.model;
 
 /**
  * 描述:新闻实体.

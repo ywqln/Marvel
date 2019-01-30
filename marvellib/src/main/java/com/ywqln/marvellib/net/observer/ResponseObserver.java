@@ -1,14 +1,14 @@
 package com.ywqln.marvellib.net.observer;
 
 
-import com.ywqln.marvellib.net.exception.ApiException;
+import com.ywqln.marvellib.net.exception.ResponseException;
 import com.ywqln.marvellib.utils.StringUtil;
 
 import io.reactivex.Observer;
 import retrofit2.HttpException;
 
 /**
- * 描述:数据返回统一处理.
+ * 描述:数据返回统一处理观察者.
  * <p>
  *
  * @author yanwenqiang.
@@ -25,9 +25,11 @@ public abstract class ResponseObserver<T> implements Observer<T> {
     public void onError(Throwable e) {
         if (e instanceof HttpException) {
             int errorCode = ((HttpException) e).code();
-            onFail(new ApiException(errorCode, getMsgForCode(errorCode)));
-        } else if (e instanceof ApiException) {
-            onFail((ApiException) e);
+            onFail(new ResponseException(errorCode, getMsgForCode(errorCode)));
+        } else if (e instanceof ResponseException) {
+            onFail((ResponseException) e);
+        } else {
+            onFail(new ResponseException(-1, "请求失败"));
         }
         onComplete();
     }
@@ -55,5 +57,5 @@ public abstract class ResponseObserver<T> implements Observer<T> {
 
     protected abstract void onSuccess(T result);
 
-    protected abstract void onFail(ApiException apiException);
+    protected abstract void onFail(ResponseException responseException);
 }

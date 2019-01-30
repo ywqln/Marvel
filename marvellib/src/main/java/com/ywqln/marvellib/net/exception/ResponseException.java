@@ -7,15 +7,15 @@ package com.ywqln.marvellib.net.exception;
  * @author yanwenqiang.
  * @date 2019/1/30
  */
-public final class ApiException extends RuntimeException {
+public final class ResponseException extends RuntimeException {
     public final int code;
     public final String message;
 
-    public ApiException(int code) {
+    public ResponseException(int code) {
         this(code, null);
     }
 
-    public ApiException(int code, String message) {
+    public ResponseException(int code, String message) {
         super(message);
         this.code = code;
         this.message = message;

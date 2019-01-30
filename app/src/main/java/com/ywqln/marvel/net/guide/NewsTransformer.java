@@ -1,7 +1,7 @@
-package com.ywqln.marvel.net;
+package com.ywqln.marvel.net.guide;
 
-import com.ywqln.marvellib.net.exception.ApiException;
-import com.ywqln.marvellib.net.guide.dto.response.NewsResp;
+import com.ywqln.marvellib.net.exception.ResponseException;
+import com.ywqln.marvel.net.guide.dto.response.NewsResp;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
@@ -21,7 +21,7 @@ public class NewsTransformer<T> implements ObservableTransformer<NewsResp<T>, T>
             if (tNewsResp.getErrorCode() == 0) {
                 return tNewsResp.getResult();
             }
-            throw new ApiException(tNewsResp.getErrorCode(), tNewsResp.getReason());
+            throw new ResponseException(tNewsResp.getErrorCode(), tNewsResp.getReason());
         });
     }
 }
