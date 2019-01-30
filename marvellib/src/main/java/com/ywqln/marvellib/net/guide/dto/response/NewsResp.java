@@ -1,6 +1,6 @@
 package com.ywqln.marvellib.net.guide.dto.response;
 
-import com.ywqln.marvellib.net.guide.dto.response.model.NewsResult;
+import com.google.gson.annotations.SerializedName;
 
 /**
  * 描述:新闻响应对象.
@@ -9,10 +9,15 @@ import com.ywqln.marvellib.net.guide.dto.response.model.NewsResult;
  * @author yanwenqiang.
  * @date 2019/1/21
  */
-public class NewsResp {
+public class NewsResp<T> {
+    @SerializedName("reason")
     private String reason;
-    private NewsResult result;
-    private int error_code;
+
+    @SerializedName("result")
+    private T result;
+
+    @SerializedName("error_code")
+    private int errorCode;
 
     public String getReason() {
         return reason;
@@ -22,19 +27,19 @@ public class NewsResp {
         this.reason = reason;
     }
 
-    public NewsResult getResult() {
+    public T getResult() {
         return result;
     }
 
-    public void setResult(NewsResult result) {
+    public void setResult(T result) {
         this.result = result;
     }
 
-    public int getError_code() {
-        return error_code;
+    public int getErrorCode() {
+        return errorCode;
     }
 
-    public void setError_code(int error_code) {
-        this.error_code = error_code;
+    public void setErrorCode(int errorCode) {
+        this.errorCode = errorCode;
     }
 }

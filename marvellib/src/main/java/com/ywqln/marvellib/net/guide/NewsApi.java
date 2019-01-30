@@ -3,6 +3,7 @@ package com.ywqln.marvellib.net.guide;
 import com.ywqln.marvellib.net.annotation.BaseUrl;
 import com.ywqln.marvellib.net.annotation.Interceptors;
 import com.ywqln.marvellib.net.guide.dto.response.NewsResp;
+import com.ywqln.marvellib.net.guide.dto.response.model.NewsResult;
 import com.ywqln.marvellib.net.guide.interceptor.NewsBaseUrlInterceptor;
 import com.ywqln.marvellib.net.guide.interceptor.NewsHeaderInterceptor;
 
@@ -28,7 +29,7 @@ public interface NewsApi {
      *             tiyu(体育)junshi(军事),keji(科技),caijing(财经),shishang(时尚)
      */
     @GET("/toutiao/index")
-    Observable<NewsResp> getNews(@Query("type") String type);
+    Observable<NewsResp<NewsResult>> getNews(@Query("type") String type);
 }
 
 

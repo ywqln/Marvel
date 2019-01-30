@@ -7,7 +7,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * 描述:待描述.
+ * 描述:api请求中线程切换.
  * <p>
  *
  * @author yanwenqiang.
