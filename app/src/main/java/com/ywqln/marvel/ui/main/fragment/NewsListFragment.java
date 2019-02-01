@@ -10,19 +10,17 @@ import com.ywqln.marvel.R;
 import com.ywqln.marvellib.base.ui.BaseFragment;
 
 /**
- * 描述:个人Fragment.
+ * 描述：新闻列表
  * <p>
  *
- * @author yanwenqiang.
- * @date 2019/1/16
+ * @author yanwenqiang
+ * @date 2019/2/1
  */
-public class PersonalFragment extends BaseFragment {
-
+public class NewsListFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_personal, null);
-//        return inflater.inflate(R.layout.activity_detail, null);
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_newslist, null);
     }
 }

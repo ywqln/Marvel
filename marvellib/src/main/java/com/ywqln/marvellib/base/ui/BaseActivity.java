@@ -6,13 +6,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.jakewharton.rxbinding2.view.RxView;
 import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.ywqln.marvellib.R;
 import com.ywqln.marvellib.widget.StatusBarNotification;
 
 import java.util.concurrent.TimeUnit;
@@ -28,6 +32,11 @@ import io.reactivex.functions.Consumer;
  * @date 2019/1/17
  */
 public abstract class BaseActivity extends AppCompatActivity {
+
+    /**
+     * 页面标题
+     */
+    public static final String TITLE_ACTIVITY = "TITLE_ACTIVITY";
 
     protected StatusBarNotification.Builder mNotificationBuilder;
 
@@ -83,5 +92,42 @@ public abstract class BaseActivity extends AppCompatActivity {
                     }
                 })
                 .setNegativeButton("取消", null).show();
+    }
+
+
+    /**
+     * 设置通用的toolbar，设置标题、默认添加返回按钮,setUniversalToolbar只需调用一次
+     *
+     * @param id 标题
+     */
+    protected void setUniversalToolbar(@StringRes int id) {
+        setUniversalToolbar(getString(id));
+    }
+
+    /**
+     * 设置通用的toolbar，设置标题、默认添加返回按钮,setUniversalToolbar只需调用一次
+     *
+     * @param title 标题
+     */
+    protected void setUniversalToolbar(CharSequence title) {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        String activityTitle = getIntent().getStringExtra(TITLE_ACTIVITY);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle(
+                    TextUtils.isEmpty(activityTitle) ? title : activityTitle);
+        }
+    }
+
+    /**
+     * 设置ToolbarTitle
+     *
+     * @param title CharSequence
+     */
+    protected void setToolbarTitle(CharSequence title) {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(title);
+        }
     }
 }
