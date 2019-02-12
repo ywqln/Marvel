@@ -79,8 +79,6 @@ public class MainActivity extends BaseActivity implements IMainEventHandler {
             transaction.show(mPersonalFragment).commit();
             return;
         }
-
-
     }
 
     @Override
@@ -88,7 +86,6 @@ public class MainActivity extends BaseActivity implements IMainEventHandler {
         switch (item.getItemId()) {
             case R.id.navigation_news_list:
                 showFragment(0);
-                mNotificationBuilder.setMessage("您选择了新闻页面").show();
                 return true;
             case R.id.navigation_home:
                 showFragment(1);
@@ -96,7 +93,6 @@ public class MainActivity extends BaseActivity implements IMainEventHandler {
                 return true;
             case R.id.navigation_personal:
                 showFragment(2);
-                mNotificationBuilder.setMessage("您选择了个人页面").show();
 ///                startActivity(new Intent(MainActivity.this, DetailActivity.class));
                 return true;
         }

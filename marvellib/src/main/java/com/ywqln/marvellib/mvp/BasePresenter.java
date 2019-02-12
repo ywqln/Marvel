@@ -14,7 +14,7 @@ public abstract class BasePresenter<V extends BaseView, M extends BaseModel> {
     protected final V mView;
 
     /**
-     * Modle
+     * Model
      */
     protected final M mModel;
 

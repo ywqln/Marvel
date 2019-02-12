@@ -17,6 +17,7 @@ import com.jakewharton.rxbinding2.view.RxView;
 import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.ywqln.marvellib.R;
+import com.ywqln.marvellib.mvp.BaseView;
 import com.ywqln.marvellib.widget.StatusBarNotification;
 
 import java.util.concurrent.TimeUnit;
@@ -31,7 +32,7 @@ import io.reactivex.functions.Consumer;
  * @author yanwenqiang.
  * @date 2019/1/17
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements BaseView {
 
     /**
      * 页面标题
@@ -129,5 +130,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(title);
         }
+    }
+
+    @Override
+    public void showError(String errorMsg) {
+        mNotificationBuilder.errorStyle().setMessage(errorMsg).show();
     }
 }
