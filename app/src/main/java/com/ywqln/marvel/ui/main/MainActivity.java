@@ -18,7 +18,7 @@ import com.ywqln.marvellib.base.ui.BaseActivity;
  * @author yanwenqiang
  * @date 2019/1/13
  */
-public class MainActivity extends BaseActivity implements IMainEventHandler {
+public class MainActivity extends BaseActivity {
 
     private NewsListFragment mNewsListFragment;
     private HomeFragment mHomeFragment;
@@ -27,15 +27,11 @@ public class MainActivity extends BaseActivity implements IMainEventHandler {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-///        ActivityMainBinding mBinding = DataBindingUtil.setContentView(this, R.layout
-/// .activity_main);
-///        mBinding.setEvent(this);
 
         setContentView(R.layout.activity_main);
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(item -> menuSelected(item));
 
-//        showFragment(0);
         navigation.setSelectedItemId(navigation.getMenu().getItem(1).getItemId());
     }
 
@@ -81,7 +77,6 @@ public class MainActivity extends BaseActivity implements IMainEventHandler {
         }
     }
 
-    @Override
     public boolean menuSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.navigation_news_list:
@@ -89,7 +84,6 @@ public class MainActivity extends BaseActivity implements IMainEventHandler {
                 return true;
             case R.id.navigation_home:
                 showFragment(1);
-///                mNotificationBuilder.setMessage("您选择了首页").show();
                 return true;
             case R.id.navigation_personal:
                 showFragment(2);
