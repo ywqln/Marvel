@@ -2,7 +2,6 @@ package com.ywqln.marvel.ui.detail;
 
 import android.app.AlertDialog;
 import android.databinding.DataBindingUtil;
-import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -39,21 +38,30 @@ public class DetailActivity extends BaseActivity implements IDetailEventHandler 
     private DetailViewModel mViewModel;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_detail);
-        mViewModel = new DetailViewModel();
-        mBinding.setViewModel(mViewModel);
-        mBinding.setEvent(this);
+    protected void preInit() {
 
+    }
+
+    @Override
+    protected void setContentView() {
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_detail);
+    }
+
+    @Override
+    protected void initView() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
         debounceClick(toolbar).subscribe(o -> {
             WLog.p("点击一次");
             mNotificationBuilder.setMessage("点击一次").show();
         });
+    }
+
+    @Override
+    protected void completed() {
+        mViewModel = new DetailViewModel();
+        mBinding.setViewModel(mViewModel);
+        mBinding.setEvent(this);
     }
 
     @Override

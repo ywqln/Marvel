@@ -45,7 +45,31 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mNotificationBuilder = new StatusBarNotification.Builder(this);
+        preInit();
+        setContentView();
+        initView();
+        completed();
     }
+
+    /**
+     * 准备实例化
+     */
+    protected abstract void preInit();
+
+    /**
+     * 设置ContentView的布局
+     */
+    protected abstract void setContentView();
+
+    /**
+     * 查找控件
+     */
+    protected abstract void initView();
+
+    /**
+     * 完成准备工作
+     */
+    protected abstract void completed();
 
     /**
      * 防止多次点击／防抖<p>

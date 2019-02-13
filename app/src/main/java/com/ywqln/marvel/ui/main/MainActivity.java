@@ -1,11 +1,12 @@
 package com.ywqln.marvel.ui.main;
 
-import android.os.Bundle;
+import android.content.Intent;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.view.MenuItem;
 
 import com.ywqln.marvel.R;
+import com.ywqln.marvel.ui.detail.DetailActivity;
 import com.ywqln.marvel.ui.main.fragment.HomeFragment;
 import com.ywqln.marvel.ui.main.fragment.NewsListFragment;
 import com.ywqln.marvel.ui.main.fragment.PersonalFragment;
@@ -25,14 +26,25 @@ public class MainActivity extends BaseActivity {
     private PersonalFragment mPersonalFragment;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void preInit() {
 
+    }
+
+    @Override
+    protected void setContentView() {
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    protected void initView() {
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(item -> menuSelected(item));
-
         navigation.setSelectedItemId(navigation.getMenu().getItem(1).getItemId());
+    }
+
+    @Override
+    protected void completed() {
+
     }
 
     private void showFragment(int index) {
@@ -87,7 +99,7 @@ public class MainActivity extends BaseActivity {
                 return true;
             case R.id.navigation_personal:
                 showFragment(2);
-///                startActivity(new Intent(MainActivity.this, DetailActivity.class));
+                startActivity(new Intent(MainActivity.this, DetailActivity.class));
                 return true;
         }
         return false;

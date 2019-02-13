@@ -1,10 +1,6 @@
 package com.ywqln.marvel.ui.main.fragment;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.ywqln.marvel.R;
 import com.ywqln.marvellib.base.ui.BaseFragment;
@@ -18,11 +14,23 @@ import com.ywqln.marvellib.base.ui.BaseFragment;
  */
 public class PersonalFragment extends BaseFragment {
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_personal, null);
-//        return inflater.inflate(R.layout.activity_detail, null);
+    protected void preInit() {
+
+    }
+
+    @Override
+    protected int layoutResId() {
+        return R.layout.fragment_personal;
+    }
+
+    @Override
+    protected void initView(View view) {
+
+    }
+
+    @Override
+    protected void completed(View view) {
+
     }
 }
