@@ -7,9 +7,9 @@ import android.view.MenuItem;
 
 import com.ywqln.marvel.R;
 import com.ywqln.marvel.ui.detail.DetailActivity;
-import com.ywqln.marvel.ui.main.fragment.HomeFragment;
-import com.ywqln.marvel.ui.main.fragment.NewsListFragment;
-import com.ywqln.marvel.ui.main.fragment.PersonalFragment;
+import com.ywqln.marvel.ui.main.home.HomeFragment;
+import com.ywqln.marvel.ui.main.news.NewsListFragment;
+import com.ywqln.marvel.ui.main.personal.PersonalFragment;
 import com.ywqln.marvellib.base.ui.BaseActivity;
 
 /**

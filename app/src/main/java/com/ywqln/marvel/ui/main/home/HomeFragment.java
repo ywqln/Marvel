@@ -1,4 +1,4 @@
-package com.ywqln.marvel.ui.main.fragment;
+package com.ywqln.marvel.ui.main.home;
 
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;

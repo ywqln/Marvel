@@ -1,4 +1,4 @@
-package com.ywqln.marvel.ui.main.fragment;
+package com.ywqln.marvel.ui.main.personal;
 
 import android.view.View;
 

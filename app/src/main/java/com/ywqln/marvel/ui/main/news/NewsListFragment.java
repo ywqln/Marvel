@@ -1,4 +1,4 @@
-package com.ywqln.marvel.ui.main.fragment;
+package com.ywqln.marvel.ui.main.news;
 
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
@@ -6,8 +6,6 @@ import android.view.View;
 import com.ywqln.marvel.R;
 import com.ywqln.marvel.net.guide.dto.response.model.NewsResult;
 import com.ywqln.marvel.ui.main.MainContract;
-import com.ywqln.marvel.ui.main.NewsModel;
-import com.ywqln.marvel.ui.main.NewsPresenter;
 import com.ywqln.marvellib.base.ui.BaseFragment;
 
 /**

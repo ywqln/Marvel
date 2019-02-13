@@ -1,9 +1,10 @@
-package com.ywqln.marvel.ui.main;
+package com.ywqln.marvel.ui.main.news;
 
 
 import com.ywqln.marvel.net.guide.NewsApi;
 import com.ywqln.marvel.net.guide.NewsTransformer;
 import com.ywqln.marvel.net.guide.dto.response.model.NewsResult;
+import com.ywqln.marvel.ui.main.MainContract;
 import com.ywqln.marvellib.net.Requester;
 import com.ywqln.marvellib.net.observer.ResponseObserver;
 import com.ywqln.marvellib.net.tranformer.ApiThreadTransformer;
