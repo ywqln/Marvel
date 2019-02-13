@@ -10,7 +10,7 @@ import com.ywqln.marvellib.net.observer.ResponseObserver;
 import com.ywqln.marvellib.net.tranformer.ApiThreadTransformer;
 
 /**
- * 描述:待描述.
+ * 描述:消息数据.
  * <p>
  *
  * @author yanwenqiang.

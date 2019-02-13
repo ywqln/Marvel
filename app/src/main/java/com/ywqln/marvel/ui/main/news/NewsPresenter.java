@@ -6,7 +6,7 @@ import com.ywqln.marvellib.net.exception.ResponseException;
 import com.ywqln.marvellib.net.observer.SimpleObserver;
 
 /**
- * 描述:待描述.
+ * 描述:消息Presenter.
  * <p>
  *
  * @author yanwenqiang.
