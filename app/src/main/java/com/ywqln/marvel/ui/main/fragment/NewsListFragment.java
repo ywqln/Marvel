@@ -36,11 +36,12 @@ public class NewsListFragment extends BaseFragment implements MainContract.NewsF
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         mNewsPresenter.getNewsList();
     }
 
     @Override
-    public void getNewsList(NewsResult newsResult) {
+    public void showNewsList(NewsResult newsResult) {
         getNotificationBuilder().tipStyle().setMessage(newsResult.getData().get(0).getTitle()).show();
     }
 }

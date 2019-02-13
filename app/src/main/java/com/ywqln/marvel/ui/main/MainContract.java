@@ -37,7 +37,7 @@ public interface MainContract {
          * V
          */
         interface View extends BaseView {
-            void getNewsList(NewsResult newsResult);
+            void showNewsList(NewsResult newsResult);
         }
 
         /**

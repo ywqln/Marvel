@@ -22,7 +22,7 @@ public class NewsPresenter extends MainContract.NewsFragment.Presenter {
         mModel.getNews("yule", new SimpleObserver<NewsResult>() {
             @Override
             protected void onSuccess(NewsResult result) {
-                mView.getNewsList(result);
+                mView.showNewsList(result);
             }
 
             @Override
