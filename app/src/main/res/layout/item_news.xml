@@ -47,6 +47,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:text="新闻类别"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/img_news"
         app:layout_constraintStart_toEndOf="@+id/img_news"/>
     <android.support.v7.widget.AppCompatTextView
@@ -58,6 +60,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="新闻来源"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/img_news"
         app:layout_constraintEnd_toStartOf="@+id/tv_news_date"
         app:layout_constraintStart_toEndOf="@+id/tv_news_type"/>
@@ -66,6 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="新闻日期"
-        app:layout_constraintBottom_toBottomOf="@+id/img_news"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:textColor="@android:color/darker_gray"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_news" app:layout_constraintEnd_toEndOf="parent"/>
 </android.support.constraint.ConstraintLayout>

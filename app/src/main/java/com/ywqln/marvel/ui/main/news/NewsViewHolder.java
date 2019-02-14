@@ -6,6 +6,7 @@ import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.ywqln.marvel.R;
 import com.ywqln.marvel.net.guide.dto.response.model.News;
 import com.ywqln.marvellib.adapter.BaseViewHolder;
@@ -33,6 +34,7 @@ public class NewsViewHolder extends BaseViewHolder<News> {
 
     @Override
     protected void dataBind(News data) {
+        Glide.with(mImgNews.getContext()).load(data.getThumbnail_pic_s()).into(mImgNews);
         mTvNewsTitle.setText(data.getTitle());
         mTvNewsType.setText(data.getCategory());
         mTvNewsFrom.setText(data.getAuthor_name());

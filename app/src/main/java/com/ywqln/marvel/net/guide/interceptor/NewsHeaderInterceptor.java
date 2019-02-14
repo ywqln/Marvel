@@ -1,5 +1,6 @@
 package com.ywqln.marvel.net.guide.interceptor;
 
+import com.ywqln.marvel.BuildConfig;
 import com.ywqln.marvellib.net.interceptor.BaseUrlInterceptor;
 
 import java.io.IOException;
@@ -15,11 +16,11 @@ import okhttp3.Response;
  * @author yanwenqiang
  * @date 2019/1/21
  */
-public class NewsHeaderInterceptor implements Interceptor,BaseUrlInterceptor {
+public class NewsHeaderInterceptor implements Interceptor, BaseUrlInterceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request.Builder requestBuilder = chain.request().newBuilder();
-        requestBuilder.addHeader("Authorization", "APPCODE 1b56403f51d84d66812ac7aa274fefe6");
+        requestBuilder.addHeader("Authorization", BuildConfig.NEWSAPPCODE);
         return chain.proceed(requestBuilder.build());
     }
 
