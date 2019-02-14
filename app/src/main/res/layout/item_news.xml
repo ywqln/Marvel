@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/box"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/text_normal">
+
+    <!--// 新闻标题-->
+    <!--private String title;-->
+    <!--// 新闻日期-->
+    <!--private String date;-->
+    <!--// 分类-->
+    <!--private String category;-->
+    <!--// 新闻来源-->
+    <!--private String author_name;-->
+    <!--// 新闻网页地址-->
+    <!--private String url;-->
+    <!--// 新闻缩略图-->
+    <!--private String thumbnail_pic_s;-->
+
+    <!--标题     图片-->
+    <!--来源 分类 日期-->
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/img_news"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_news_title"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="10dp"
+        android:text="新闻标题" app:layout_constraintBottom_toTopOf="@+id/tv_news_from"
+        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toEndOf="@+id/img_news"
+        app:layout_constraintTop_toTopOf="@+id/img_news"/>
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_news_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="新闻类别"
+        app:layout_constraintBottom_toBottomOf="@+id/img_news"
+        app:layout_constraintStart_toEndOf="@+id/img_news"/>
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_news_from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="新闻来源"
+        app:layout_constraintBottom_toBottomOf="@+id/img_news"
+        app:layout_constraintEnd_toStartOf="@+id/tv_news_date"
+        app:layout_constraintStart_toEndOf="@+id/tv_news_type"/>
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_news_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="新闻日期"
+        app:layout_constraintBottom_toBottomOf="@+id/img_news"
+        app:layout_constraintEnd_toEndOf="parent"/>
+</android.support.constraint.ConstraintLayout>

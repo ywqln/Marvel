@@ -1,9 +1,12 @@
 package com.ywqln.marvel.ui.main.news;
 
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.ywqln.marvel.R;
+import com.ywqln.marvel.net.guide.dto.response.model.News;
 import com.ywqln.marvel.net.guide.dto.response.model.NewsResult;
 import com.ywqln.marvel.ui.main.MainContract;
 import com.ywqln.marvellib.base.ui.BaseFragment;
@@ -19,9 +22,10 @@ public class NewsListFragment extends BaseFragment implements MainContract.NewsF
 
     private NewsPresenter mNewsPresenter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
+    private RecyclerView mRvContentList;
 
     @Override
-    protected void preInit() {
+    public void preInit() {
         mNewsPresenter = new NewsPresenter(this, new NewsModel());
     }
 
@@ -31,8 +35,9 @@ public class NewsListFragment extends BaseFragment implements MainContract.NewsF
     }
 
     @Override
-    protected void initView(View view) {
+    public void initView(View view) {
         mSwipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
+        mRvContentList = view.findViewById(R.id.rv_content_list);
         mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_dark,
                 android.R.color.holo_red_light, android.R.color.holo_purple);
 
@@ -40,7 +45,7 @@ public class NewsListFragment extends BaseFragment implements MainContract.NewsF
     }
 
     @Override
-    protected void completed(View view) {
+    public void completed(View view) {
         mNewsPresenter.getNewsList();
     }
 
@@ -66,6 +71,11 @@ public class NewsListFragment extends BaseFragment implements MainContract.NewsF
         mSwipeRefreshLayout.setRefreshing(false);
         getNotificationBuilder().tipStyle().setMessage(
                 newsResult.getData().get(0).getTitle()).show();
+
+        NewsListAdapter<News> adapter = new NewsListAdapter<>();
+        adapter.setDataSource(newsResult.getData());
+        mRvContentList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRvContentList.setAdapter(adapter);
     }
 
 

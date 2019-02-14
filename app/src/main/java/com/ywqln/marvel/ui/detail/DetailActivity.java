@@ -38,7 +38,7 @@ public class DetailActivity extends BaseActivity implements IDetailEventHandler 
     private DetailViewModel mViewModel;
 
     @Override
-    protected void preInit() {
+    public void preInit() {
 
     }
 
@@ -48,7 +48,7 @@ public class DetailActivity extends BaseActivity implements IDetailEventHandler 
     }
 
     @Override
-    protected void initView() {
+    public void initView(View view) {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         debounceClick(toolbar).subscribe(o -> {
@@ -58,7 +58,7 @@ public class DetailActivity extends BaseActivity implements IDetailEventHandler 
     }
 
     @Override
-    protected void completed() {
+    public void completed(View view) {
         mViewModel = new DetailViewModel();
         mBinding.setViewModel(mViewModel);
         mBinding.setEvent(this);

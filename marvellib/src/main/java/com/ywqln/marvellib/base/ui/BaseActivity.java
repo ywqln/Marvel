@@ -17,6 +17,7 @@ import com.jakewharton.rxbinding2.view.RxView;
 import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.ywqln.marvellib.R;
+import com.ywqln.marvellib.base.ICreateView;
 import com.ywqln.marvellib.mvp.BaseView;
 import com.ywqln.marvellib.widget.StatusBarNotification;
 
@@ -32,7 +33,7 @@ import io.reactivex.functions.Consumer;
  * @author yanwenqiang.
  * @date 2019/1/17
  */
-public abstract class BaseActivity extends AppCompatActivity implements BaseView {
+public abstract class BaseActivity extends AppCompatActivity implements BaseView, ICreateView {
 
     /**
      * 页面标题
@@ -47,29 +48,15 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         mNotificationBuilder = new StatusBarNotification.Builder(this);
         preInit();
         setContentView();
-        initView();
-        completed();
+        View view = getWindow().getDecorView();
+        initView(view);
+        completed(view);
     }
-
-    /**
-     * 准备实例化
-     */
-    protected abstract void preInit();
 
     /**
      * 设置ContentView的布局
      */
     protected abstract void setContentView();
-
-    /**
-     * 查找控件
-     */
-    protected abstract void initView();
-
-    /**
-     * 完成准备工作
-     */
-    protected abstract void completed();
 
     /**
      * 防止多次点击／防抖<p>

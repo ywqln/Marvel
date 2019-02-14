@@ -15,7 +15,7 @@ import com.ywqln.marvellib.base.ui.BaseFragment;
 public class PersonalFragment extends BaseFragment {
 
     @Override
-    protected void preInit() {
+    public void preInit() {
 
     }
 
@@ -25,12 +25,12 @@ public class PersonalFragment extends BaseFragment {
     }
 
     @Override
-    protected void initView(View view) {
+    public void initView(View view) {
 
     }
 
     @Override
-    protected void completed(View view) {
+    public void completed(View view) {
 
     }
 }

@@ -17,7 +17,7 @@ public class HomeFragment extends BaseFragment {
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
-    protected void preInit() {
+    public void preInit() {
 
     }
 
@@ -27,7 +27,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     @Override
-    protected void initView(View view) {
+    public void initView(View view) {
         mSwipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
         mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_dark,
                 android.R.color.holo_red_light, android.R.color.holo_purple);
@@ -36,7 +36,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     @Override
-    protected void completed(View view) {
+    public void completed(View view) {
 
     }
 

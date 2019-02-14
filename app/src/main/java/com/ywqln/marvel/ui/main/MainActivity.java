@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.ywqln.marvel.R;
 import com.ywqln.marvel.ui.detail.DetailActivity;
@@ -26,7 +27,7 @@ public class MainActivity extends BaseActivity {
     private PersonalFragment mPersonalFragment;
 
     @Override
-    protected void preInit() {
+    public void preInit() {
 
     }
 
@@ -36,14 +37,14 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    protected void initView() {
+    public void initView(View view) {
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(item -> menuSelected(item));
         navigation.setSelectedItemId(navigation.getMenu().getItem(1).getItemId());
     }
 
     @Override
-    protected void completed() {
+    public void completed(View view) {
 
     }
 
