@@ -37,11 +37,11 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="10dp"
-        android:text="新闻标题" app:layout_constraintBottom_toTopOf="@+id/tv_news_from"
+        android:text="新闻标题" app:layout_constraintBottom_toTopOf="@+id/tv_news_author"
         app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toEndOf="@+id/img_news"
         app:layout_constraintTop_toTopOf="@+id/img_news"/>
     <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/tv_news_type"
+        android:id="@+id/tv_news_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -52,7 +52,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/img_news"
         app:layout_constraintStart_toEndOf="@+id/img_news"/>
     <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/tv_news_from"
+        android:id="@+id/tv_news_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -64,7 +64,7 @@
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/img_news"
         app:layout_constraintEnd_toStartOf="@+id/tv_news_date"
-        app:layout_constraintStart_toEndOf="@+id/tv_news_type"/>
+        app:layout_constraintStart_toEndOf="@+id/tv_news_category"/>
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/tv_news_date"
         android:layout_width="wrap_content"

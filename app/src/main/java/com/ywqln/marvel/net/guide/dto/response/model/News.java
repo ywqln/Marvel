@@ -1,5 +1,7 @@
 package com.ywqln.marvel.net.guide.dto.response.model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * 描述:新闻实体.
  * <p>
@@ -16,11 +18,13 @@ public class News {
     // 分类
     private String category;
     // 新闻来源
-    private String author_name;
+    @SerializedName("author_name")
+    private String author;
     // 新闻网页地址
     private String url;
     // 新闻缩略图
-    private String thumbnail_pic_s;
+    @SerializedName("thumbnail_pic_s")
+    private String thumbUrl;
 
     public String getUniquekey() {
         return uniquekey;
@@ -54,12 +58,12 @@ public class News {
         this.category = category;
     }
 
-    public String getAuthor_name() {
-        return author_name;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setAuthor_name(String author_name) {
-        this.author_name = author_name;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public String getUrl() {
@@ -70,11 +74,11 @@ public class News {
         this.url = url;
     }
 
-    public String getThumbnail_pic_s() {
-        return thumbnail_pic_s;
+    public String getThumbUrl() {
+        return thumbUrl;
     }
 
-    public void setThumbnail_pic_s(String thumbnail_pic_s) {
-        this.thumbnail_pic_s = thumbnail_pic_s;
+    public void setThumbUrl(String thumbUrl) {
+        this.thumbUrl = thumbUrl;
     }
 }
