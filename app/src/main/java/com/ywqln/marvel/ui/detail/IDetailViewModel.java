@@ -8,6 +8,8 @@ package com.ywqln.marvel.ui.detail;
  * @date 2019/1/13
  */
 public interface IDetailViewModel {
-    String getName();
+    String getTitle();
+    String getNewsUrl();
+    String getImgUrl();
     String getDetail();
 }

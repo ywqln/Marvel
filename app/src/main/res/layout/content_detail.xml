@@ -14,14 +14,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context="com.ywqln.marvel.ui.detail.DetailActivity"
+        tools:context="com.ywqln.marvel.ui.detail.NewsDetailActivity"
         tools:showIn="@layout/activity_detail">
 
-        <android.support.v7.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_normal"
-            android:text='@{viewModel.detail}' />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_normal"
+                android:text='@{viewModel.detail}'/>
+            <WebView
+                android:id="@+id/webview_News"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </layout>

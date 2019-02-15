@@ -7,7 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.ywqln.marvel.R;
-import com.ywqln.marvel.ui.detail.DetailActivity;
+import com.ywqln.marvel.ui.detail.NewsDetailActivity;
 import com.ywqln.marvel.ui.main.home.HomeFragment;
 import com.ywqln.marvel.ui.main.news.NewsListFragment;
 import com.ywqln.marvel.ui.main.personal.PersonalFragment;
@@ -91,6 +91,11 @@ public class MainActivity extends BaseActivity {
     }
 
     public boolean menuSelected(MenuItem item) {
+
+        String newsJson =
+                "{\"author_name\":\"灵动娱乐说\",\"category\":\"娱乐\",\"date\":\"2019-02-15 17:57\","
+                        + "\"thumbnail_pic_s\":\"http://06imgmini.eastday"
+                        + ".com/mobile/20190215/2019021517_c44056c0177844c89c2913fc0bd3703b_6480_mwpm_03200403.jpg\",\"title\":\"同样头戴皇冠，鞠婧祎清纯，热巴唐嫣似女王，她却是来搞笑的\",\"uniquekey\":\"1769ec7ef17bcd5ee4bc4384fa3f3ac3\",\"url\":\"http://mini.eastday.com/mobile/190215175710446.html\"}";
         switch (item.getItemId()) {
             case R.id.navigation_news_list:
                 showFragment(0);
@@ -100,7 +105,9 @@ public class MainActivity extends BaseActivity {
                 return true;
             case R.id.navigation_personal:
                 showFragment(2);
-                startActivity(new Intent(MainActivity.this, DetailActivity.class));
+                startActivity(
+                        new Intent(MainActivity.this, NewsDetailActivity.class).putExtra(PARAM_JSON,
+                                newsJson));
                 return true;
         }
         return false;

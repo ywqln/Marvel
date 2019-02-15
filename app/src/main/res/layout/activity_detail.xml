@@ -14,11 +14,11 @@
 
     <android.support.design.widget.CoordinatorLayout
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/coordinator_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/coordinator_layout"
         android:fitsSystemWindows="true"
-        tools:context="com.ywqln.marvel.ui.detail.DetailActivity">
+        tools:context="com.ywqln.marvel.ui.detail.NewsDetailActivity">
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/app_bar"
@@ -34,8 +34,13 @@
                 android:fitsSystemWindows="true"
                 app:contentScrim="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:title="@{viewModel.name}"
+                app:title="@{viewModel.title}"
                 app:toolbarId="@+id/toolbar">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/img_news"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
@@ -48,8 +53,8 @@
         </android.support.design.widget.AppBarLayout>
 
         <include
-            layout="@layout/content_detail"
             android:id="@+id/content"
+            layout="@layout/content_detail"
             bind:viewModel="@{viewModel}"/>
 
         <android.support.design.widget.FloatingActionButton
@@ -60,17 +65,7 @@
             android:onClick="@{(view)->event.fabClick(view)}"
             app:layout_anchor="@id/app_bar"
             app:layout_anchorGravity="bottom|end"
-            app:srcCompat="@android:drawable/ic_dialog_email"/>
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab_bottom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fab_margin"
-            android:onClick="@{(view)->event.fabClick(view)}"
-            app:layout_anchor="@id/content"
-            app:layout_anchorGravity="center|end"
-            app:srcCompat="@android:drawable/sym_action_call"/>
+            app:srcCompat="@android:drawable/btn_star_big_off"/>
 
     </android.support.design.widget.CoordinatorLayout>
 </layout>

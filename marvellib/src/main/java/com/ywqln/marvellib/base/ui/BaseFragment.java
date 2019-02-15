@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ywqln.marvellib.base.ICreateView;
+import com.ywqln.marvellib.constant.ExtraConstant;
 import com.ywqln.marvellib.mvp.BaseView;
 import com.ywqln.marvellib.widget.StatusBarNotification;
 
@@ -19,7 +20,8 @@ import com.ywqln.marvellib.widget.StatusBarNotification;
  * @author yanwenqiang.
  * @date 2019/1/17
  */
-public abstract class BaseFragment extends Fragment implements BaseView, ICreateView {
+public abstract class BaseFragment extends Fragment implements BaseView, ExtraConstant,
+        ICreateView {
 
     @Nullable
     @Override

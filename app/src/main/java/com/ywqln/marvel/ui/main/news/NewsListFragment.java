@@ -1,13 +1,16 @@
 package com.ywqln.marvel.ui.main.news;
 
+import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.google.gson.Gson;
 import com.ywqln.marvel.R;
 import com.ywqln.marvel.net.guide.dto.response.model.News;
 import com.ywqln.marvel.net.guide.dto.response.model.NewsResult;
+import com.ywqln.marvel.ui.detail.NewsDetailActivity;
 import com.ywqln.marvel.ui.main.MainContract;
 import com.ywqln.marvellib.base.ui.BaseFragment;
 
@@ -19,7 +22,6 @@ import com.ywqln.marvellib.base.ui.BaseFragment;
  * @date 2019/2/1
  */
 public class NewsListFragment extends BaseFragment implements MainContract.NewsFragment.View {
-
     private NewsPresenter mNewsPresenter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRvContentList;
@@ -60,7 +62,6 @@ public class NewsListFragment extends BaseFragment implements MainContract.NewsF
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
-
     /**
      * 在数据正常返回的情况下
      *
@@ -79,6 +80,10 @@ public class NewsListFragment extends BaseFragment implements MainContract.NewsF
         adapter.setOnItemClickListener((viewHolder, itemView, data, position) -> {
             String msg = "第" + position + "行数据：" + data.getTitle();
             getNotificationBuilder().tipStyle().setMessage(msg).show();
+
+            String json = new Gson().toJson(data);
+            startActivity(
+                    new Intent(getActivity(), NewsDetailActivity.class).putExtra(PARAM_JSON, json));
         });
     }
 

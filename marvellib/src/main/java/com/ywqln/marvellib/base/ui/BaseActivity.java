@@ -18,6 +18,7 @@ import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.ywqln.marvellib.R;
 import com.ywqln.marvellib.base.ICreateView;
+import com.ywqln.marvellib.constant.ExtraConstant;
 import com.ywqln.marvellib.mvp.BaseView;
 import com.ywqln.marvellib.widget.StatusBarNotification;
 
@@ -33,7 +34,8 @@ import io.reactivex.functions.Consumer;
  * @author yanwenqiang.
  * @date 2019/1/17
  */
-public abstract class BaseActivity extends AppCompatActivity implements BaseView, ICreateView {
+public abstract class BaseActivity extends AppCompatActivity implements BaseView, ExtraConstant,
+        ICreateView {
 
     /**
      * 页面标题

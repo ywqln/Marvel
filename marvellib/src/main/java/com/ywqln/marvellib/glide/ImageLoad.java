@@ -28,7 +28,7 @@ public interface ImageLoad {
     void alwaysLoad(ImageView view, String url, RequestOptions options);
 
     static RequestOptions options(int placeholder, int error) {
-        return new RequestOptions().placeholder(placeholder).error(error);
+        return new RequestOptions().placeholder(placeholder).error(error).centerCrop();
     }
 
     static RequestOptions circle() {

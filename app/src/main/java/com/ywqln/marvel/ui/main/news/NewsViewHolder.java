@@ -36,7 +36,7 @@ public class NewsViewHolder extends BaseViewHolder<News> {
 
     @Override
     protected void dataBind(News data) {
-        ImageLoader.instance().loadCircle(mImgNews, data.getThumbUrl());
+        ImageLoader.instance().load(mImgNews, data.getThumbUrl());
         mTvNewsTitle.setText(data.getTitle());
         mTvNewsCategory.setText(data.getCategory());
         mTvNewsAuthor.setText(data.getAuthor());
