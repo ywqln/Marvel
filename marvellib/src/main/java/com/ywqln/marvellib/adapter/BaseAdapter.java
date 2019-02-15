@@ -19,6 +19,8 @@ public abstract class BaseAdapter<M> extends RecyclerView.Adapter<BaseViewHolder
      */
     private List<M> dataSource;
 
+    private OnItemClickListener<M> mOnItemClickListener;
+
     public List<M> getDataSource() {
         return dataSource;
     }
@@ -26,6 +28,10 @@ public abstract class BaseAdapter<M> extends RecyclerView.Adapter<BaseViewHolder
     public BaseAdapter setDataSource(List<M> dataSource) {
         this.dataSource = dataSource;
         return this;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener<M> onItemClickListener) {
+        mOnItemClickListener = onItemClickListener;
     }
 
     /**
@@ -40,12 +46,14 @@ public abstract class BaseAdapter<M> extends RecyclerView.Adapter<BaseViewHolder
     @NonNull
     @Override
     public BaseViewHolder<M> onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return viewHolder(parent, viewType);
+        BaseViewHolder<M> viewHolder = viewHolder(parent, viewType);
+        viewHolder.setOnItemClickListener(mOnItemClickListener);
+        return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BaseViewHolder<M> mBaseViewHolder, int position) {
-        mBaseViewHolder.dataBind(getDataSource().get(position));
+    public void onBindViewHolder(@NonNull BaseViewHolder<M> baseViewHolder, int position) {
+        baseViewHolder.dataBindView(getDataSource().get(position), position);
     }
 
     @Override

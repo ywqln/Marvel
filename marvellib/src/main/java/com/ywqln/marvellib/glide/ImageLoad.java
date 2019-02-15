@@ -26,4 +26,12 @@ public interface ImageLoad {
     void loadCircle(ImageView view, String url);
 
     void alwaysLoad(ImageView view, String url, RequestOptions options);
+
+    static RequestOptions options(int placeholder, int error) {
+        return new RequestOptions().placeholder(placeholder).error(error);
+    }
+
+    static RequestOptions circle() {
+        return new RequestOptions().circleCrop();
+    }
 }

@@ -7,22 +7,6 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/text_normal">
 
-    <!--// 新闻标题-->
-    <!--private String title;-->
-    <!--// 新闻日期-->
-    <!--private String date;-->
-    <!--// 分类-->
-    <!--private String category;-->
-    <!--// 新闻来源-->
-    <!--private String author_name;-->
-    <!--// 新闻网页地址-->
-    <!--private String url;-->
-    <!--// 新闻缩略图-->
-    <!--private String thumbnail_pic_s;-->
-
-    <!--标题     图片-->
-    <!--来源 分类 日期-->
-
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/img_news"
         android:layout_width="80dp"

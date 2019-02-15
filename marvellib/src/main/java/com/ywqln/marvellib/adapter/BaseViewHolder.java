@@ -18,6 +18,9 @@ import com.ywqln.marvellib.base.ICreateView;
  */
 public abstract class BaseViewHolder<M> extends RecyclerView.ViewHolder implements ICreateView {
 
+    private M data;
+    private int position;
+
     public BaseViewHolder(Class clz, ViewGroup parent) {
         this(LayoutInflater.from(parent.getContext()).inflate(LayoutUtil.layoutResId(clz),
                 parent, false));
@@ -27,7 +30,27 @@ public abstract class BaseViewHolder<M> extends RecyclerView.ViewHolder implemen
         super(view);
         preInit();
         initView(view);
+        itemView.setOnClickListener(view1 -> {
+            if (mOnItemClickListener != null) {
+                mOnItemClickListener.onItemClick(this, view1, data, position);
+            }
+        });
         completed(view);
+    }
+
+    private OnItemClickListener<M> mOnItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener<M> onItemClickListener) {
+        mOnItemClickListener = onItemClickListener;
+    }
+
+    /**
+     * 绑定
+     */
+    protected void dataBindView(M data, int position) {
+        this.data = data;
+        this.position = position;
+        dataBind(data);
     }
 
     /**

@@ -1,6 +1,7 @@
 package com.ywqln.marvel.ui.main.news;
 
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
@@ -27,6 +28,7 @@ public class NewsViewHolder extends BaseViewHolder<News> {
     private AppCompatTextView mTvNewsCategory;
     private AppCompatTextView mTvNewsAuthor;
     private AppCompatTextView mTvNewsDate;
+    private ConstraintLayout mBox;
 
     public NewsViewHolder(Class clz, ViewGroup parent) {
         super(clz, parent);
@@ -34,7 +36,7 @@ public class NewsViewHolder extends BaseViewHolder<News> {
 
     @Override
     protected void dataBind(News data) {
-        ImageLoader.instance().loadCircle(mImgNews,data.getThumbUrl());
+        ImageLoader.instance().loadCircle(mImgNews, data.getThumbUrl());
         mTvNewsTitle.setText(data.getTitle());
         mTvNewsCategory.setText(data.getCategory());
         mTvNewsAuthor.setText(data.getAuthor());
@@ -52,11 +54,14 @@ public class NewsViewHolder extends BaseViewHolder<News> {
         mTvNewsTitle = view.findViewById(R.id.tv_news_title);
         mTvNewsCategory = view.findViewById(R.id.tv_news_category);
         mTvNewsAuthor = view.findViewById(R.id.tv_news_author);
-        mTvNewsDate= view.findViewById(R.id.tv_news_date);
+        mTvNewsDate = view.findViewById(R.id.tv_news_date);
+        mBox = view.findViewById(R.id.box);
     }
 
     @Override
     public void completed(@Nullable View view) {
-
+//        mBox.setOnClickListener(view1 -> {
+//
+//        });
     }
 }

@@ -59,7 +59,7 @@ public class ImageLoader implements ImageLoad {
 
     @Override
     public void load(ImageView view, int placeholder, String url, int error) {
-        loadImage(view, url, options(placeholder, error));
+        loadImage(view, url, ImageLoad.options(placeholder, error));
     }
 
     @Override
@@ -69,12 +69,12 @@ public class ImageLoader implements ImageLoad {
 
     @Override
     public void loadCircle(ImageView view, int placeholder, String url, int error) {
-        loadImage(view, url, options(placeholder, error).circleCrop());
+        loadImage(view, url, ImageLoad.options(placeholder, error).circleCrop());
     }
 
     @Override
     public void loadCircle(ImageView view, String url) {
-        loadImage(view, url, circle());
+        loadImage(view, url, ImageLoad.circle());
     }
 
     @Override
@@ -88,13 +88,5 @@ public class ImageLoader implements ImageLoad {
 
     private boolean wifiState() {
         return NetworkStateUtil.isWifiState();
-    }
-
-    public RequestOptions options(int placeholder, int error) {
-        return new RequestOptions().placeholder(placeholder).error(error);
-    }
-
-    public RequestOptions circle() {
-        return new RequestOptions().circleCrop();
     }
 }

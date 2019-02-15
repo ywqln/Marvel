@@ -76,6 +76,10 @@ public class NewsListFragment extends BaseFragment implements MainContract.NewsF
         adapter.setDataSource(newsResult.getData());
         mRvContentList.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRvContentList.setAdapter(adapter);
+        adapter.setOnItemClickListener((viewHolder, itemView, data, position) -> {
+            String msg = "第" + position + "行数据：" + data.getTitle();
+            getNotificationBuilder().tipStyle().setMessage(msg).show();
+        });
     }
 
 
