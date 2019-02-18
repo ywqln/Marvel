@@ -51,7 +51,7 @@
 
             </android.support.design.widget.CollapsingToolbarLayout>
         </android.support.design.widget.AppBarLayout>
-
+        
         <include
             android:id="@+id/content"
             layout="@layout/content_detail"

@@ -11,5 +11,10 @@ public interface ExtraConstant {
     /**
      * json的参数
      */
-    String PARAM_JSON = "ParamJson";
+    String PARAM_JSON = "PARAM_JSON";
+
+    /**
+     * 页面标题
+     */
+    public static final String TITLE = "TITLE";
 }

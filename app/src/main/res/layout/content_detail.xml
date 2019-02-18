@@ -22,12 +22,18 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <com.ywqln.marvellib.widget.ProgressView
+                android:id="@+id/pv_webview"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"/>
+
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/text_normal"
                 android:text='@{viewModel.detail}'/>
-            <WebView
+
+            <com.ywqln.marvellib.widget.webview.MarvelWebView
                 android:id="@+id/webview_News"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>

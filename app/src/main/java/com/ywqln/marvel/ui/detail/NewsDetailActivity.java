@@ -8,7 +8,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebView;
 
 import com.google.gson.Gson;
 import com.ywqln.marvel.R;
@@ -19,6 +18,9 @@ import com.ywqln.marvellib.base.ui.BaseActivity;
 import com.ywqln.marvellib.glide.ImageLoader;
 import com.ywqln.marvellib.utils.CheckVirtualUtil;
 import com.ywqln.marvellib.utils.WLog;
+import com.ywqln.marvellib.widget.webview.MarvelChromeClient;
+import com.ywqln.marvellib.widget.webview.MarvelWebView;
+import com.ywqln.marvellib.widget.ProgressView;
 
 /**
  * 描述：详情页面
@@ -33,7 +35,8 @@ public class NewsDetailActivity extends BaseActivity implements IDetailEventHand
     private IDetailViewModel mViewModel;
     private AppCompatImageView mImgNews;
     private FloatingActionButton mFaButton;
-    private WebView mWebviewNews;
+    private MarvelWebView mWebviewNews;
+    private ProgressView mProgressView;
 
     @Override
     public void preInit() {
@@ -53,6 +56,9 @@ public class NewsDetailActivity extends BaseActivity implements IDetailEventHand
         mImgNews = findViewById(R.id.img_news);
         mFaButton = findViewById(R.id.fab);
         mWebviewNews = findViewById(R.id.webview_News);
+        mProgressView = findViewById(R.id.pv_webview);
+        mWebviewNews.setWebChromeClient(MarvelChromeClient.class).setProgressView(mProgressView);
+
         debounceClick(toolbar).subscribe(o -> {
             WLog.p("点击一次");
             mNotificationBuilder.setMessage("点击一次").show();

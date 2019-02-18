@@ -37,11 +37,6 @@ import io.reactivex.functions.Consumer;
 public abstract class BaseActivity extends AppCompatActivity implements BaseView, ExtraConstant,
         ICreateView {
 
-    /**
-     * 页面标题
-     */
-    public static final String TITLE_ACTIVITY = "TITLE_ACTIVITY";
-
     protected StatusBarNotification.Builder mNotificationBuilder;
 
     @Override
@@ -126,7 +121,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     protected void setUniversalToolbar(CharSequence title) {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        String activityTitle = getIntent().getStringExtra(TITLE_ACTIVITY);
+        String activityTitle = getIntent().getStringExtra(TITLE);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setTitle(
