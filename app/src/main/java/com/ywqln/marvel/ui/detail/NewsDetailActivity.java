@@ -14,13 +14,14 @@ import com.ywqln.marvel.R;
 import com.ywqln.marvel.databinding.ActivityDetailBinding;
 import com.ywqln.marvel.net.guide.dto.response.model.News;
 import com.ywqln.marvel.net.test.TestAnnotation;
+import com.ywqln.marvel.webview.AppWebChromeClient;
 import com.ywqln.marvellib.base.ui.BaseActivity;
 import com.ywqln.marvellib.glide.ImageLoader;
 import com.ywqln.marvellib.utils.CheckVirtualUtil;
 import com.ywqln.marvellib.utils.WLog;
-import com.ywqln.marvellib.widget.webview.MarvelChromeClient;
-import com.ywqln.marvellib.widget.webview.MarvelWebView;
 import com.ywqln.marvellib.widget.ProgressView;
+import com.ywqln.marvellib.widget.webview.MarvelWebView;
+import com.ywqln.marvellib.widget.webview.MarvelWebViewClient;
 
 /**
  * 描述：详情页面
@@ -35,7 +36,7 @@ public class NewsDetailActivity extends BaseActivity implements IDetailEventHand
     private IDetailViewModel mViewModel;
     private AppCompatImageView mImgNews;
     private FloatingActionButton mFaButton;
-    private MarvelWebView mWebviewNews;
+    private MarvelWebView<AppWebChromeClient,MarvelWebViewClient> mWebviewNews;
     private ProgressView mProgressView;
 
     @Override
@@ -57,7 +58,7 @@ public class NewsDetailActivity extends BaseActivity implements IDetailEventHand
         mFaButton = findViewById(R.id.fab);
         mWebviewNews = findViewById(R.id.webview_News);
         mProgressView = findViewById(R.id.pv_webview);
-        mWebviewNews.setWebChromeClient(MarvelChromeClient.class).setProgressView(mProgressView);
+        mWebviewNews.setWebChromeClient(new AppWebChromeClient()).setProgressView(mProgressView);
 
         debounceClick(toolbar).subscribe(o -> {
             WLog.p("点击一次");
