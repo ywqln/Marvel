@@ -40,7 +40,9 @@
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/img_news"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"/>
 
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
@@ -51,7 +53,7 @@
 
             </android.support.design.widget.CollapsingToolbarLayout>
         </android.support.design.widget.AppBarLayout>
-        
+
         <include
             android:id="@+id/content"
             layout="@layout/content_detail"

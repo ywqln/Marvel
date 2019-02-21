@@ -1,6 +1,7 @@
 package com.ywqln.marvel.ui.detail;
 
 import android.databinding.DataBindingUtil;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.AppCompatImageView;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
 
 import com.google.gson.Gson;
 import com.ywqln.marvel.R;
@@ -36,7 +38,7 @@ public class NewsDetailActivity extends BaseActivity implements IDetailEventHand
     private IDetailViewModel mViewModel;
     private AppCompatImageView mImgNews;
     private FloatingActionButton mFaButton;
-    private MarvelWebView<AppWebChromeClient,MarvelWebViewClient> mWebviewNews;
+    private MarvelWebView<AppWebChromeClient, MarvelWebViewClient> mWebviewNews;
     private ProgressView mProgressView;
 
     @Override
@@ -53,12 +55,19 @@ public class NewsDetailActivity extends BaseActivity implements IDetailEventHand
     @Override
     public void initView(View view) {
         Toolbar toolbar = findViewById(R.id.toolbar);
+        CollapsingToolbarLayout toolbarLayout = findViewById(R.id.toolbar_layout);
         setSupportActionBar(toolbar);
         mImgNews = findViewById(R.id.img_news);
         mFaButton = findViewById(R.id.fab);
         mWebviewNews = findViewById(R.id.webview_News);
         mProgressView = findViewById(R.id.pv_webview);
-        mWebviewNews.setWebChromeClient(new AppWebChromeClient()).setProgressView(mProgressView);
+        mWebviewNews.setWebViewClient(new MarvelWebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                toolbarLayout.setTitle(getTitle());
+            }
+        }).setWebChromeClient(new AppWebChromeClient()).setProgressView(mProgressView);
 
         debounceClick(toolbar).subscribe(o -> {
             WLog.p("点击一次");

@@ -72,7 +72,7 @@ public class ProgressView extends View {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                post(() -> setVisibility(GONE));
+                post(() -> setVisibility(INVISIBLE));
             }).start();
         }
     }

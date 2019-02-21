@@ -13,6 +13,7 @@ import android.util.AttributeSet;
 public class MarvelWebView<C extends MarvelChromeClient, W extends MarvelWebViewClient> extends
         BaseWebView {
     private MarvelChromeClient mMarvelChromeClient;
+    private MarvelWebViewClient marvelWebViewClient;
 
     public MarvelWebView(Context context) {
         super(context);
@@ -47,16 +48,15 @@ public class MarvelWebView<C extends MarvelChromeClient, W extends MarvelWebView
         return chromeClient;
     }
 
-    private MarvelWebViewClient setWebViewClient() {
-        MarvelWebViewClient marvelWebViewClient = new MarvelWebViewClient();
+    private MarvelWebView<C, W> setWebViewClient() {
+        marvelWebViewClient = new MarvelWebViewClient();
         setWebViewClient(marvelWebViewClient);
-        return marvelWebViewClient;
+        return this;
     }
 
-    public W setWebViewClient(W webViewClient) {
-        MarvelWebViewClient marvelWebViewClient = webViewClient;
+    public MarvelWebView<C, W> setWebViewClient(W webViewClient) {
+        marvelWebViewClient = webViewClient;
         setWebViewClient(marvelWebViewClient);
-        return webViewClient;
-
+        return this;
     }
 }
