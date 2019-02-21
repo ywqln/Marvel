@@ -14,9 +14,6 @@ import com.ywqln.marvellib.adapter.BaseViewHolder;
  * @date 2019/2/13
  */
 public class NewsListAdapter<M> extends BaseAdapter<News> {
-    // Glide加载图片 DrawableRequestBuilder 的创建
-    // 标题和下面补充信息的文字颜色，大小要区别开
-    // ButterKnife 引入
 
     @Override
     public int getItemViewType(int position) {

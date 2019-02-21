@@ -16,5 +16,5 @@ public interface ExtraConstant {
     /**
      * 页面标题
      */
-    public static final String TITLE = "TITLE";
+    String TITLE = "TITLE";
 }

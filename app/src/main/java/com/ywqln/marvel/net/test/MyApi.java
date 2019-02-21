@@ -22,18 +22,14 @@ import retrofit2.http.Query;
 @BaseUrl("http://yyy.www.qqq")
 @Interceptors(ResultResp.class)
 public interface MyApi {
-     /**
+    /**
      * 根据学号获取某个学生信息
-     * @param studentNumber
-     * @return
      */
     @GET("/getStudent")
     Call<ResultResp> getStudent(@Query("num") String studentNumber);
 
     /**
      * 获取一个班级的所有学生信息
-     * @param classNumber
-     * @return
      */
     @POST("/getStudents")
     Observable<List<ResultResp>> getStudents(@Query("classNum") String classNumber);

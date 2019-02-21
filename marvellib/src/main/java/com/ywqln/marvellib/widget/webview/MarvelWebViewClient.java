@@ -1,7 +1,9 @@
 package com.ywqln.marvellib.widget.webview;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Build;
 import android.webkit.ClientCertRequest;
@@ -10,9 +12,12 @@ import android.webkit.SslErrorHandler;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
 import com.ywqln.marvellib.utils.WLog;
+import com.ywqln.marvellib.widget.webview.base.BaseInterceptor;
+import com.ywqln.marvellib.widget.webview.base.BaseWebViewClient;
+import com.ywqln.marvellib.widget.webview.base.UrlResolve;
+import com.ywqln.marvellib.widget.webview.base.WebAction;
 
 /**
  * 描述:MarvelWebViewClient.
@@ -21,7 +26,7 @@ import com.ywqln.marvellib.utils.WLog;
  * @author yanwenqiang.
  * @date 2019/2/19
  */
-public class MarvelWebViewClient extends WebViewClient {
+public class MarvelWebViewClient extends BaseWebViewClient {
 
     private String mTitle;
 
@@ -39,7 +44,7 @@ public class MarvelWebViewClient extends WebViewClient {
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
         WLog.p("WebView", request.getUrl());
-        if (intercept(request.getUrl().toString())) {
+        if (intercept(view, request.getUrl().toString())) {
             return true;
         }
         return super.shouldOverrideUrlLoading(view, request);
@@ -48,7 +53,7 @@ public class MarvelWebViewClient extends WebViewClient {
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         WLog.p("WebView", url);
-        if (intercept(url)) {
+        if (intercept(view, url)) {
             return true;
         }
         return super.shouldOverrideUrlLoading(view, url);
@@ -89,7 +94,19 @@ public class MarvelWebViewClient extends WebViewClient {
      * @param url webview url
      * @return 是否要拦截继续加载跳转页面，默认不拦截，false
      */
-    protected boolean intercept(String url) {
+    protected boolean intercept(WebView webView, String url) {
+        if (url.startsWith("tel:")) {
+            webView.getContext().startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(url)));
+            return true;
+        }
+        if (url.startsWith(interceptProtocol)) {
+            WebAction webAction = UrlResolve.toObject(url);
+            for (BaseInterceptor interceptor : mBaseInterceptors) {
+                if (interceptor.getAction().equals(webAction)) {
+                    return interceptor.apply(webView.getContext(), url);
+                }
+            }
+        }
         return false;
     }
 }
