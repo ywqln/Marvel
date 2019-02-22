@@ -1,4 +1,4 @@
-package com.ywqln.marvellib.base.ui;
+package com.ywqln.marvellib.ui;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ywqln.marvellib.base.ICreateView;
 import com.ywqln.marvellib.constant.ExtraConstant;
 import com.ywqln.marvellib.mvp.BaseView;
 import com.ywqln.marvellib.widget.StatusBarNotification;

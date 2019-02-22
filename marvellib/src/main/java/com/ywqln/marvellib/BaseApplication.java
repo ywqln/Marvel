@@ -1,4 +1,4 @@
-package com.ywqln.marvellib.base;
+package com.ywqln.marvellib;
 
 import android.app.Application;
 

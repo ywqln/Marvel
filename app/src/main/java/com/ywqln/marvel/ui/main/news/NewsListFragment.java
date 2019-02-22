@@ -12,7 +12,7 @@ import com.ywqln.marvel.net.guide.dto.response.model.News;
 import com.ywqln.marvel.net.guide.dto.response.model.NewsResult;
 import com.ywqln.marvel.ui.detail.NewsDetailActivity;
 import com.ywqln.marvel.ui.main.MainContract;
-import com.ywqln.marvellib.base.ui.BaseFragment;
+import com.ywqln.marvellib.ui.BaseFragment;
 
 import java.util.List;
 

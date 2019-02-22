@@ -1,4 +1,4 @@
-package com.ywqln.marvellib.base;
+package com.ywqln.marvellib.ui;
 
 import android.support.annotation.Nullable;
 import android.view.View;

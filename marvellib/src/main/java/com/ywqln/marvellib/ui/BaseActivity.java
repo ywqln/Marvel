@@ -1,6 +1,5 @@
-package com.ywqln.marvellib.base.ui;
+package com.ywqln.marvellib.ui;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,10 +13,8 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.jakewharton.rxbinding2.view.RxView;
-import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.ywqln.marvellib.R;
-import com.ywqln.marvellib.base.ICreateView;
 import com.ywqln.marvellib.constant.ExtraConstant;
 import com.ywqln.marvellib.mvp.BaseView;
 import com.ywqln.marvellib.widget.StatusBarNotification;
@@ -25,7 +22,6 @@ import com.ywqln.marvellib.widget.StatusBarNotification;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
-import io.reactivex.functions.Consumer;
 
 /**
  * 描述:Activity基类.
@@ -70,19 +66,16 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
      */
     protected void checkPermission(String... permissions) {
         new RxPermissions(this).requestEach(permissions)
-                .subscribe(new Consumer<Permission>() {
-                    @Override
-                    public void accept(Permission permission) {
-                        if (permission.granted) {
-                            return;
-                        }
-                        mNotificationBuilder.setMessage(
-                                "权限：" + permission.name + "被拒绝,需要手动开启").show();
-                        if (!permission.shouldShowRequestPermissionRationale) {
-                            // 授权对话框，提示用户手动开启该权限
-                            openPermission();
-                            return;
-                        }
+                .subscribe(permission -> {
+                    if (permission.granted) {
+                        return;
+                    }
+                    mNotificationBuilder.setMessage(
+                            "权限：" + permission.name + "被拒绝,需要手动开启").show();
+                    if (!permission.shouldShowRequestPermissionRationale) {
+                        // 授权对话框，提示用户手动开启该权限
+                        openPermission();
+                        return;
                     }
                 });
     }
@@ -91,14 +84,11 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         new AlertDialog.Builder(this)
                 .setTitle("提示：")
                 .setMessage("点击确定跳转只权限页面开启相关权限")
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                                Uri.fromParts("package", getPackageName(), null));
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                    }
+                .setPositiveButton("确定", (dialog, which) -> {
+                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                            Uri.fromParts("package", getPackageName(), null));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
                 })
                 .setNegativeButton("取消", null).show();
     }

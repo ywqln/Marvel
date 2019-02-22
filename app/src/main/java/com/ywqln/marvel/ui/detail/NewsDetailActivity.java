@@ -18,7 +18,7 @@ import com.ywqln.marvel.net.guide.dto.response.model.News;
 import com.ywqln.marvel.net.test.TestAnnotation;
 import com.ywqln.marvel.webview.AppWebChromeClient;
 import com.ywqln.marvel.webview.AppWebViewClient;
-import com.ywqln.marvellib.base.ui.BaseActivity;
+import com.ywqln.marvellib.ui.BaseActivity;
 import com.ywqln.marvellib.glide.ImageLoader;
 import com.ywqln.marvellib.utils.CheckVirtualUtil;
 import com.ywqln.marvellib.utils.WLog;

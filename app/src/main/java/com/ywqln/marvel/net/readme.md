@@ -157,9 +157,6 @@ public class Service {
 - addInterceptor 和 addNetworkInterceptor 区别
 
 - flatMap
-- 列表展示
-- mvp
-- RxPermission
 - LitePal
 - 激光推送
 

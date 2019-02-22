@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ywqln.marvellib.adapter.annotation.LayoutUtil;
-import com.ywqln.marvellib.base.ICreateView;
+import com.ywqln.marvellib.ui.ICreateView;
 
 /**
  * 描述:ViewHolder的基类.

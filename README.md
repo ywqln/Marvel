@@ -16,18 +16,18 @@ Marvel Android
 - [x] 1. [Retrofit](http://square.github.io/retrofit/) - 基于Okhttp网络请求框架的管理框架 结合OKHttp
 - [ ] 2. [RxLifeCycle](https://github.com/trello/RxLifecycle) - Activity/Fragment容器的指定生命周期取消订阅，防止内存泄漏
 - [x] 3. [RxAndroid](https://github.com/ReactiveX/RxAndroid) - 响应式编程
-- [ ] 4. [RxPermission](https://github.com/tbruyelle/RxPermissions) - 运行时权限处理框架
+- [x] 4. [RxPermission](https://github.com/tbruyelle/RxPermissions) - 运行时权限处理框架
 - [ ] 5. [LitePal](https://github.com/LitePalFramework/LitePal) - 关系型数据库操作框架
 - [x] 6. Gradle 灵活配置debug和release环境变量
 - [ ] 7. [Butterknife](https://github.com/JakeWharton/butterknife) - 布局注入框架，省去findViewById步骤
-- [ ] 8. [MVP项目结构](https://github.com/googlesamples/android-architecture/tree/todo-mvp/) - MVP的项目结构
+- [x] 8. [MVP项目结构](https://github.com/googlesamples/android-architecture/tree/todo-mvp/) - MVP的项目结构
 - [ ] 9. [ImagePicker](https://github.com/jeasonlzy/ImagePicker) - 新的图片选择、裁剪框架
 - [x] 10. [Logger](https://github.com/orhanobut/logger) - 漂亮的日志打印插件
 - [ ] 11. [Bugly](https://bugly.qq.com/v2/) - 可基于用户定位bug
-- [ ] 12.支持 JAVA 8 Lambda 表达式
+- [x] 12.支持 JAVA 8 Lambda 表达式
 - [ ] 13. [JPush](https://www.jiguang.cn/) - 极光推送
 - [ ] 14. [GrowingIO](https://docs.growingio.com/docs/sdk-integration/android-sdk/) - 无埋点，数据统计
-- [ ] 15.Glide 图片加载
+- [x] 15.Glide 图片加载
 - [ ] 16.SwipeBackHelper
 - [ ] 17.Leakcanary
 - [ ] 18.BottomNavigationViewEx

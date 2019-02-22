@@ -3,7 +3,7 @@ package com.ywqln.marvel.ui.main.personal;
 import android.view.View;
 
 import com.ywqln.marvel.R;
-import com.ywqln.marvellib.base.ui.BaseFragment;
+import com.ywqln.marvellib.ui.BaseFragment;
 
 /**
  * 描述:个人Fragment.

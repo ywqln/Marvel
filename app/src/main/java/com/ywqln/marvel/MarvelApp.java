@@ -1,6 +1,6 @@
 package com.ywqln.marvel;
 
-import com.ywqln.marvellib.base.BaseApplication;
+import com.ywqln.marvellib.BaseApplication;
 import com.ywqln.marvellib.utils.WLog;
 
 /**
