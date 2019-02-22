@@ -1,4 +1,4 @@
-package com.ywqln.marvellib.widget.webview.base;
+package com.ywqln.marvellib.webkit.base;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -11,7 +11,7 @@ import android.webkit.WebView;
  * @author yanwenqiang.
  * @date 2019/2/19
  */
-public class BaseWebView extends WebView {
+public abstract class BaseWebView extends WebView {
 
     public BaseWebView(Context context) {
         super(context);

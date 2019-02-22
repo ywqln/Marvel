@@ -1,9 +1,9 @@
-package com.ywqln.marvellib.widget.webview;
+package com.ywqln.marvellib.webkit;
 
 import android.content.Context;
 import android.util.AttributeSet;
 
-import com.ywqln.marvellib.widget.webview.base.BaseWebView;
+import com.ywqln.marvellib.webkit.base.BaseWebView;
 
 /**
  * 描述:MarvelWebView.
@@ -33,30 +33,30 @@ public class MarvelWebView<C extends MarvelChromeClient, W extends MarvelWebView
     }
 
     private void initView() {
-        setWebChromeClient();
-        setWebViewClient();
+        webChromeClient();
+        webViewClient();
         getSettings().setJavaScriptEnabled(true);
     }
 
-    private MarvelChromeClient setWebChromeClient() {
+    private MarvelWebView webChromeClient() {
         mMarvelChromeClient = new MarvelChromeClient();
         setWebChromeClient(mMarvelChromeClient);
-        return mMarvelChromeClient;
+        return this;
     }
 
-    public C setWebChromeClient(C chromeClient) {
+    public MarvelWebView<C, W> webChromeClient(C chromeClient) {
         mMarvelChromeClient = chromeClient;
         setWebChromeClient(mMarvelChromeClient);
-        return chromeClient;
+        return this;
     }
 
-    private MarvelWebView<C, W> setWebViewClient() {
+    private MarvelWebView<C, W> webViewClient() {
         marvelWebViewClient = new MarvelWebViewClient();
         setWebViewClient(marvelWebViewClient);
         return this;
     }
 
-    public MarvelWebView<C, W> setWebViewClient(W webViewClient) {
+    public MarvelWebView<C, W> webViewClient(W webViewClient) {
         marvelWebViewClient = webViewClient;
         setWebViewClient(marvelWebViewClient);
         return this;

@@ -1,4 +1,4 @@
-package com.ywqln.marvellib.widget.webview.base;
+package com.ywqln.marvellib.webkit.base;
 
 import com.google.gson.Gson;
 import com.ywqln.marvellib.utils.StringUtil;

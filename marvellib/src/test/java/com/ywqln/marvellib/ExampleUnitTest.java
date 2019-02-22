@@ -2,7 +2,7 @@ package com.ywqln.marvellib;
 
 import static org.junit.Assert.assertEquals;
 
-import com.ywqln.marvellib.widget.webview.base.UrlResolve;
+import com.ywqln.marvellib.webkit.base.UrlResolve;
 
 import org.junit.Test;
 

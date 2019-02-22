@@ -33,7 +33,7 @@
                 android:layout_margin="@dimen/text_normal"
                 android:text='@{viewModel.detail}'/>
 
-            <com.ywqln.marvellib.widget.webview.MarvelWebView
+            <com.ywqln.marvellib.webkit.MarvelWebView
                 android:id="@+id/webview_News"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>

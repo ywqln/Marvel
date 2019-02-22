@@ -17,13 +17,13 @@ import com.ywqln.marvel.databinding.ActivityDetailBinding;
 import com.ywqln.marvel.net.guide.dto.response.model.News;
 import com.ywqln.marvel.net.test.TestAnnotation;
 import com.ywqln.marvel.webview.AppWebChromeClient;
+import com.ywqln.marvel.webview.AppWebViewClient;
 import com.ywqln.marvellib.base.ui.BaseActivity;
 import com.ywqln.marvellib.glide.ImageLoader;
 import com.ywqln.marvellib.utils.CheckVirtualUtil;
 import com.ywqln.marvellib.utils.WLog;
+import com.ywqln.marvellib.webkit.MarvelWebView;
 import com.ywqln.marvellib.widget.ProgressView;
-import com.ywqln.marvellib.widget.webview.MarvelWebView;
-import com.ywqln.marvellib.widget.webview.MarvelWebViewClient;
 
 /**
  * 描述：详情页面
@@ -38,7 +38,7 @@ public class NewsDetailActivity extends BaseActivity implements IDetailEventHand
     private IDetailViewModel mViewModel;
     private AppCompatImageView mImgNews;
     private FloatingActionButton mFaButton;
-    private MarvelWebView<AppWebChromeClient, MarvelWebViewClient> mWebviewNews;
+    private MarvelWebView<AppWebChromeClient, AppWebViewClient> mWebviewNews;
     private ProgressView mProgressView;
 
     @Override
@@ -54,6 +54,7 @@ public class NewsDetailActivity extends BaseActivity implements IDetailEventHand
 
     @Override
     public void initView(View view) {
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         CollapsingToolbarLayout toolbarLayout = findViewById(R.id.toolbar_layout);
         setSupportActionBar(toolbar);
@@ -61,13 +62,13 @@ public class NewsDetailActivity extends BaseActivity implements IDetailEventHand
         mFaButton = findViewById(R.id.fab);
         mWebviewNews = findViewById(R.id.webview_News);
         mProgressView = findViewById(R.id.pv_webview);
-        mWebviewNews.setWebViewClient(new MarvelWebViewClient() {
+        mWebviewNews.webViewClient(new AppWebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
                 toolbarLayout.setTitle(getTitle());
             }
-        }).setWebChromeClient(new AppWebChromeClient()).setProgressView(mProgressView);
+        }).webChromeClient(new AppWebChromeClient(mProgressView));
 
         debounceClick(toolbar).subscribe(o -> {
             WLog.p("点击一次");

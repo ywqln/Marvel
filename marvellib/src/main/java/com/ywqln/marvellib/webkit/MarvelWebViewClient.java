@@ -1,8 +1,7 @@
-package com.ywqln.marvellib.widget.webview;
+package com.ywqln.marvellib.webkit;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Build;
@@ -14,10 +13,10 @@ import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 
 import com.ywqln.marvellib.utils.WLog;
-import com.ywqln.marvellib.widget.webview.base.BaseInterceptor;
-import com.ywqln.marvellib.widget.webview.base.BaseWebViewClient;
-import com.ywqln.marvellib.widget.webview.base.UrlResolve;
-import com.ywqln.marvellib.widget.webview.base.WebAction;
+import com.ywqln.marvellib.webkit.base.BaseInterceptor;
+import com.ywqln.marvellib.webkit.base.BaseWebViewClient;
+import com.ywqln.marvellib.webkit.base.UrlResolve;
+import com.ywqln.marvellib.webkit.base.WebAction;
 
 /**
  * 描述:MarvelWebViewClient.
@@ -27,17 +26,9 @@ import com.ywqln.marvellib.widget.webview.base.WebAction;
  * @date 2019/2/19
  */
 public class MarvelWebViewClient extends BaseWebViewClient {
-
-    private String mTitle;
-
-    public String getTitle() {
-        return mTitle;
-    }
-
-    @Override
-    public void onPageStarted(WebView view, String url, Bitmap favicon) {
-        super.onPageStarted(view, url, favicon);
-        mTitle = view.getTitle();
+    public MarvelWebViewClient setInterceptProtocol(String interceptProtocol) {
+        this.mInterceptProtocol = interceptProtocol;
+        return this;
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -57,13 +48,6 @@ public class MarvelWebViewClient extends BaseWebViewClient {
             return true;
         }
         return super.shouldOverrideUrlLoading(view, url);
-    }
-
-    @Override
-    public void onPageFinished(WebView view, String url) {
-        super.onPageFinished(view, url);
-        // 加载完成
-        mTitle = view.getTitle();
     }
 
     @Override
@@ -99,7 +83,7 @@ public class MarvelWebViewClient extends BaseWebViewClient {
             webView.getContext().startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(url)));
             return true;
         }
-        if (url.startsWith(interceptProtocol)) {
+        if (url.startsWith(mInterceptProtocol)) {
             WebAction webAction = UrlResolve.toObject(url);
             for (BaseInterceptor interceptor : mBaseInterceptors) {
                 if (interceptor.getAction().equals(webAction)) {
