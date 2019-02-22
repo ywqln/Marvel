@@ -41,7 +41,12 @@ public class WLog {
         // Logger.addLogAdapter(DiskLogAdapter());
     }
 
+    private static Strategy mStrategy;
+
     public static void strategy(Strategy strategy) {
+        if (mStrategy == null) {
+            mStrategy = strategy;
+        }
         mBuilder = PrettyFormatStrategy.newBuilder()
                 // 是否显示线程信息。 默认值为true
                 .showThreadInfo(strategy.showThreadInfo)
@@ -100,6 +105,20 @@ public class WLog {
     }
 
     /**
+     * 普通debug日志
+     *
+     * @param tag 标记
+     * @param obj 打印内容
+     */
+    public static void tempP(String tag, Object obj) {
+        if (checkLogAble() && obj != null) {
+            simple();
+            Logger.t(tag).d(obj.toString());
+            reset();
+        }
+    }
+
+    /**
      * 格式化打印json串
      */
     public static void json(Object json) {
@@ -144,6 +163,20 @@ public class WLog {
     }
 
     /**
+     * 错误日志
+     *
+     * @param tag 标记
+     * @param obj 打印内容
+     */
+    public static void tempE(String tag, Object obj) {
+        if (checkLogAble() && obj != null) {
+            simple();
+            Logger.t(tag).e(tag, obj.toString());
+            reset();
+        }
+    }
+
+    /**
      * 原生打印
      */
     public static void nativeLog(Object obj) {
@@ -159,6 +192,14 @@ public class WLog {
         if (checkLogAble() && obj != null) {
             Log.d(tag, obj.toString());
         }
+    }
+
+    private static void simple() {
+        WLog.strategy(new WLog.Strategy().tag("temp").methodCount(0).showThreadInfo(false));
+    }
+
+    public static void reset() {
+        WLog.strategy(mStrategy);
     }
 
 

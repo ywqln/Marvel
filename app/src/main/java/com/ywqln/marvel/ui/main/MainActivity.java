@@ -12,6 +12,7 @@ import com.ywqln.marvel.ui.main.home.HomeFragment;
 import com.ywqln.marvel.ui.main.news.NewsListFragment;
 import com.ywqln.marvel.ui.main.personal.PersonalFragment;
 import com.ywqln.marvellib.base.ui.BaseActivity;
+import com.ywqln.marvellib.utils.WLog;
 
 /**
  * 描述：应用程序主启动页面
@@ -28,7 +29,10 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void preInit() {
-
+        WLog.p("hello", "你好");
+        WLog.tempP("网页Log", "临时信息");
+        WLog.p("no", "我不好");
+        WLog.p("Just Do It");
     }
 
     @Override
