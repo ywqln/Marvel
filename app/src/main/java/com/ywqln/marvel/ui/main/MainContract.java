@@ -1,5 +1,6 @@
 package com.ywqln.marvel.ui.main;
 
+import com.ywqln.marvel.net.guide.dto.response.model.News;
 import com.ywqln.marvel.net.guide.dto.response.model.NewsResult;
 import com.ywqln.marvellib.mvp.BaseModel;
 import com.ywqln.marvellib.mvp.BasePresenter;
@@ -31,6 +32,8 @@ public interface MainContract {
              * 获取新闻列表
              */
             public abstract void getNewsList();
+
+            public abstract News getAdvert();
         }
 
         /**
@@ -50,6 +53,8 @@ public interface MainContract {
              * @return 用户权限数据
              */
             void getNews(String type, ResponseObserver<NewsResult> observer);
+
+            News getAdvert();
 
         }
     }

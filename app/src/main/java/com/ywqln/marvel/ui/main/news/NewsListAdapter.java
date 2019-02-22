@@ -15,14 +15,27 @@ import com.ywqln.marvellib.adapter.BaseViewHolder;
  */
 public class NewsListAdapter<M> extends BaseAdapter<News> {
 
+    static final int NEWS_TYPE = 1;
+    static final int ADVERT_TYPE = 2;
+    /**
+     * 广告位
+     */
+    public static final int ADVERT_INDEX = 12;
+
     @Override
     public int getItemViewType(int position) {
-        return super.getItemViewType(position);
+        if (position == ADVERT_INDEX) {
+            return ADVERT_TYPE;
+        }
+        return NEWS_TYPE;
     }
 
     @Override
     protected BaseViewHolder<News> viewHolder(ViewGroup parent, int viewType) {
-        return new NewsViewHolder(NewsViewHolder.class, parent);
+        if (viewType == NEWS_TYPE) {
+            return new NewsViewHolder(NewsViewHolder.class, parent);
+        }
+        return new AdvertViewHolder(AdvertViewHolder.class, parent);
     }
 
 }

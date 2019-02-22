@@ -1,5 +1,6 @@
 package com.ywqln.marvel.ui.main.news;
 
+import com.ywqln.marvel.net.guide.dto.response.model.News;
 import com.ywqln.marvel.net.guide.dto.response.model.NewsResult;
 import com.ywqln.marvel.ui.main.MainContract;
 import com.ywqln.marvellib.net.exception.ResponseException;
@@ -33,4 +34,8 @@ public class NewsPresenter extends MainContract.NewsFragment.Presenter {
         });
     }
 
+    @Override
+    public News getAdvert() {
+        return mModel.getAdvert();
+    }
 }

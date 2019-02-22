@@ -14,6 +14,8 @@ import com.ywqln.marvel.ui.detail.NewsDetailActivity;
 import com.ywqln.marvel.ui.main.MainContract;
 import com.ywqln.marvellib.base.ui.BaseFragment;
 
+import java.util.List;
+
 /**
  * 描述：新闻列表
  * <p>
@@ -25,6 +27,7 @@ public class NewsListFragment extends BaseFragment implements MainContract.NewsF
     private NewsPresenter mNewsPresenter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRvContentList;
+    private NewsListAdapter<News> mAdapter;
 
     @Override
     public void preInit() {
@@ -42,13 +45,19 @@ public class NewsListFragment extends BaseFragment implements MainContract.NewsF
         mRvContentList = view.findViewById(R.id.rv_content_list);
         mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_dark,
                 android.R.color.holo_red_light, android.R.color.holo_purple);
-
-        mSwipeRefreshLayout.setOnRefreshListener(() -> refresh());
     }
 
     @Override
     public void completed(View view) {
         mNewsPresenter.getNewsList();
+        mAdapter = new NewsListAdapter<>();
+        mAdapter.setOnItemClickListener(
+                (viewHolder, itemView, data, position) -> adapter_itemClick(data));
+
+        mSwipeRefreshLayout.setOnRefreshListener(() -> swipeRefreshLayout_refresh());
+        mRvContentList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRvContentList.setAdapter(mAdapter);
+        mSwipeRefreshLayout.setRefreshing(true);
     }
 
     /**
@@ -73,22 +82,19 @@ public class NewsListFragment extends BaseFragment implements MainContract.NewsF
         getNotificationBuilder().tipStyle().setMessage(
                 newsResult.getData().get(0).getTitle()).show();
 
-        NewsListAdapter<News> adapter = new NewsListAdapter<>();
-        adapter.setDataSource(newsResult.getData());
-        mRvContentList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRvContentList.setAdapter(adapter);
-        adapter.setOnItemClickListener((viewHolder, itemView, data, position) -> {
-            String msg = "第" + position + "行数据：" + data.getTitle();
-            getNotificationBuilder().tipStyle().setMessage(msg).show();
-
-            String json = new Gson().toJson(data);
-            startActivity(
-                    new Intent(getActivity(), NewsDetailActivity.class).putExtra(PARAM_JSON, json));
-        });
+        List<News> newsList = newsResult.getData();
+        newsList.add(NewsListAdapter.ADVERT_INDEX, mNewsPresenter.getAdvert());
+        mAdapter.setDataSource(newsList);
+        mAdapter.notifyDataSetChanged();
     }
 
+    private void adapter_itemClick(News data) {
+        Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
+        intent.putExtra(PARAM_JSON, new Gson().toJson(data));
+        startActivity(intent);
+    }
 
-    private void refresh() {
+    private void swipeRefreshLayout_refresh() {
         mNewsPresenter.getNewsList();
     }
 }

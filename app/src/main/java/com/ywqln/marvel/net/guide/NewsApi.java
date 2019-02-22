@@ -1,5 +1,6 @@
 package com.ywqln.marvel.net.guide;
 
+import com.ywqln.marvel.BuildConfig;
 import com.ywqln.marvellib.net.annotation.BaseUrl;
 import com.ywqln.marvellib.net.annotation.Interceptors;
 import com.ywqln.marvel.net.guide.dto.response.NewsResp;
@@ -18,7 +19,7 @@ import retrofit2.http.Query;
  * @author yanwenqiang.
  * @date 2019/1/21
  */
-@BaseUrl(value = "http://toutiao-ali.juheapi.cn", dynamic = NewsBaseUrlInterceptor.class)
+@BaseUrl(value = BuildConfig.NEWSAPI, dynamic = NewsBaseUrlInterceptor.class)
 @Interceptors(NewsHeaderInterceptor.class)
 public interface NewsApi {
 
