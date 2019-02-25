@@ -18,12 +18,12 @@ import com.ywqln.marvel.net.guide.dto.response.model.News;
 import com.ywqln.marvel.net.test.TestAnnotation;
 import com.ywqln.marvel.webview.AppWebChromeClient;
 import com.ywqln.marvel.webview.AppWebViewClient;
-import com.ywqln.marvellib.ui.BaseActivity;
-import com.ywqln.marvellib.glide.ImageLoader;
-import com.ywqln.marvellib.utils.CheckVirtualUtil;
-import com.ywqln.marvellib.utils.WLog;
-import com.ywqln.marvellib.webkit.MarvelWebView;
-import com.ywqln.marvellib.widget.ProgressView;
+import com.ywqln.marvel.ui.BaseActivity;
+import com.ywqln.marvel.glide.ImageLoader;
+import com.ywqln.marvel.utils.CheckVirtualUtil;
+import com.ywqln.marvel.utils.WLog;
+import com.ywqln.marvel.webkit.MarvelWebView;
+import com.ywqln.marvel.widget.ProgressView;
 
 /**
  * 描述：详情页面

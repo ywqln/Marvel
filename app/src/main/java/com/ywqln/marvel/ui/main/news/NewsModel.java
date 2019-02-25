@@ -6,9 +6,9 @@ import com.ywqln.marvel.net.guide.NewsTransformer;
 import com.ywqln.marvel.net.guide.dto.response.model.News;
 import com.ywqln.marvel.net.guide.dto.response.model.NewsResult;
 import com.ywqln.marvel.ui.main.MainContract;
-import com.ywqln.marvellib.net.Requester;
-import com.ywqln.marvellib.net.observer.ResponseObserver;
-import com.ywqln.marvellib.net.tranformer.ApiThreadTransformer;
+import com.ywqln.marvel.net.Requester;
+import com.ywqln.marvel.net.observer.ResponseObserver;
+import com.ywqln.marvel.net.tranformer.ApiThreadTransformer;
 
 /**
  * 描述:消息数据.

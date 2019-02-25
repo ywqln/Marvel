@@ -2,7 +2,7 @@ package com.ywqln.marvel;
 
 import static org.junit.Assert.assertEquals;
 
-import com.ywqln.marvellib.utils.StringUtil;
+import com.ywqln.marvel.utils.StringUtil;
 
 import org.junit.Test;
 

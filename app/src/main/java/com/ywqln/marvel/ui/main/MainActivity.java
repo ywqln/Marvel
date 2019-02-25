@@ -11,8 +11,8 @@ import com.ywqln.marvel.ui.detail.NewsDetailActivity;
 import com.ywqln.marvel.ui.main.home.HomeFragment;
 import com.ywqln.marvel.ui.main.news.NewsListFragment;
 import com.ywqln.marvel.ui.main.personal.PersonalFragment;
-import com.ywqln.marvellib.ui.BaseActivity;
-import com.ywqln.marvellib.utils.WLog;
+import com.ywqln.marvel.ui.BaseActivity;
+import com.ywqln.marvel.utils.WLog;
 
 /**
  * 描述：应用程序主启动页面

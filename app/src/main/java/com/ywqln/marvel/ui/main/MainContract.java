@@ -2,10 +2,10 @@ package com.ywqln.marvel.ui.main;
 
 import com.ywqln.marvel.net.guide.dto.response.model.News;
 import com.ywqln.marvel.net.guide.dto.response.model.NewsResult;
-import com.ywqln.marvellib.mvp.BaseModel;
-import com.ywqln.marvellib.mvp.BasePresenter;
-import com.ywqln.marvellib.mvp.BaseView;
-import com.ywqln.marvellib.net.observer.ResponseObserver;
+import com.ywqln.marvel.mvp.BaseModel;
+import com.ywqln.marvel.mvp.BasePresenter;
+import com.ywqln.marvel.mvp.BaseView;
+import com.ywqln.marvel.net.observer.ResponseObserver;
 
 /**
  * 描述:MainActivity的契约.

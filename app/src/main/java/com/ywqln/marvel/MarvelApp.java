@@ -1,7 +1,6 @@
 package com.ywqln.marvel;
 
-import com.ywqln.marvellib.BaseApplication;
-import com.ywqln.marvellib.utils.WLog;
+import com.ywqln.marvel.utils.WLog;
 
 /**
  * 描述：应用 Application

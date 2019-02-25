@@ -3,8 +3,8 @@ package com.ywqln.marvel.ui.main.news;
 import android.view.ViewGroup;
 
 import com.ywqln.marvel.net.guide.dto.response.model.News;
-import com.ywqln.marvellib.adapter.BaseAdapter;
-import com.ywqln.marvellib.adapter.BaseViewHolder;
+import com.ywqln.marvel.adapter.BaseAdapter;
+import com.ywqln.marvel.adapter.BaseViewHolder;
 
 /**
  * 描述:消息列表控件的适配器.

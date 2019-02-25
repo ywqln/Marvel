@@ -1,1 +1,1 @@
-include ':app', ':marvellib'
+include ':app', ':marvel'

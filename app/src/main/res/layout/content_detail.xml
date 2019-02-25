@@ -22,7 +22,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.ywqln.marvellib.widget.ProgressView
+            <com.ywqln.marvel.widget.ProgressView
                 android:id="@+id/pv_webview"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"/>
@@ -33,7 +33,7 @@
                 android:layout_margin="@dimen/text_normal"
                 android:text='@{viewModel.detail}'/>
 
-            <com.ywqln.marvellib.webkit.MarvelWebView
+            <com.ywqln.marvel.webkit.MarvelWebView
                 android:id="@+id/webview_News"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>

@@ -4,7 +4,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 
 import com.ywqln.marvel.R;
-import com.ywqln.marvellib.ui.BaseFragment;
+import com.ywqln.marvel.ui.BaseFragment;
 
 /**
  * 描述:主页Fragment.

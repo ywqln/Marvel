@@ -1,6 +1,6 @@
 package com.ywqln.marvel.net.guide;
 
-import com.ywqln.marvellib.net.exception.ResponseException;
+import com.ywqln.marvel.net.exception.ResponseException;
 import com.ywqln.marvel.net.guide.dto.response.NewsResp;
 
 import io.reactivex.Observable;

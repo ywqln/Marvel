@@ -3,8 +3,8 @@ package com.ywqln.marvel.ui.main.news;
 import com.ywqln.marvel.net.guide.dto.response.model.News;
 import com.ywqln.marvel.net.guide.dto.response.model.NewsResult;
 import com.ywqln.marvel.ui.main.MainContract;
-import com.ywqln.marvellib.net.exception.ResponseException;
-import com.ywqln.marvellib.net.observer.SimpleObserver;
+import com.ywqln.marvel.net.exception.ResponseException;
+import com.ywqln.marvel.net.observer.SimpleObserver;
 
 /**
  * 描述:消息Presenter.

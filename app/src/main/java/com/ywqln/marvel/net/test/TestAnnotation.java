@@ -1,9 +1,9 @@
 package com.ywqln.marvel.net.test;
 
-import com.ywqln.marvellib.net.annotation.BaseUrl;
-import com.ywqln.marvellib.net.annotation.Interceptors;
+import com.ywqln.marvel.net.annotation.BaseUrl;
+import com.ywqln.marvel.net.annotation.Interceptors;
 import com.ywqln.marvel.net.guide.dto.response.ResultResp;
-import com.ywqln.marvellib.net.util.AnnotationUtil;
+import com.ywqln.marvel.net.util.AnnotationUtil;
 
 import okhttp3.Interceptor;
 

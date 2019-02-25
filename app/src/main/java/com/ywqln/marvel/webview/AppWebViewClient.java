@@ -1,6 +1,6 @@
 package com.ywqln.marvel.webview;
 
-import com.ywqln.marvellib.webkit.MarvelWebViewClient;
+import com.ywqln.marvel.webkit.MarvelWebViewClient;
 
 /**
  * 描述:AppWebViewClient.

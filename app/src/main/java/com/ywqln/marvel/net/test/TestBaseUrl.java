@@ -1,6 +1,6 @@
 package com.ywqln.marvel.net.test;
 
-import com.ywqln.marvellib.net.interceptor.BaseUrlInterceptor;
+import com.ywqln.marvel.net.interceptor.BaseUrlInterceptor;
 
 /**
  * 描述:测试动态获取baseUrl.

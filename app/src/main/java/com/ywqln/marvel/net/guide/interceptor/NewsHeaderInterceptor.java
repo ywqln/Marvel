@@ -1,7 +1,7 @@
 package com.ywqln.marvel.net.guide.interceptor;
 
 import com.ywqln.marvel.BuildConfig;
-import com.ywqln.marvellib.net.interceptor.BaseUrlInterceptor;
+import com.ywqln.marvel.net.interceptor.BaseUrlInterceptor;
 
 import java.io.IOException;
 

@@ -2,8 +2,8 @@ package com.ywqln.marvel.webview;
 
 import android.webkit.WebView;
 
-import com.ywqln.marvellib.webkit.MarvelChromeClient;
-import com.ywqln.marvellib.widget.ProgressView;
+import com.ywqln.marvel.webkit.MarvelChromeClient;
+import com.ywqln.marvel.widget.ProgressView;
 
 /**
  * 描述:AppWebChromeClient.

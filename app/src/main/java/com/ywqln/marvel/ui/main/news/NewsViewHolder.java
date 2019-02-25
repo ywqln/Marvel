@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 
 import com.ywqln.marvel.R;
 import com.ywqln.marvel.net.guide.dto.response.model.News;
-import com.ywqln.marvellib.adapter.BaseViewHolder;
-import com.ywqln.marvellib.adapter.annotation.LayoutResId;
-import com.ywqln.marvellib.glide.ImageLoader;
+import com.ywqln.marvel.adapter.BaseViewHolder;
+import com.ywqln.marvel.adapter.annotation.LayoutResId;
+import com.ywqln.marvel.glide.ImageLoader;
 
 /**
  * 描述:新闻ViewHolder.

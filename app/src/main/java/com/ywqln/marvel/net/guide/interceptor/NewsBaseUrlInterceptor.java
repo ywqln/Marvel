@@ -1,6 +1,6 @@
 package com.ywqln.marvel.net.guide.interceptor;
 
-import com.ywqln.marvellib.net.interceptor.BaseUrlInterceptor;
+import com.ywqln.marvel.net.interceptor.BaseUrlInterceptor;
 
 /**
  * 描述:动态获取新闻baseUrl.
