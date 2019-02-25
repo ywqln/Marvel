@@ -4,7 +4,7 @@ android {
     compileSdkVersion build_versions.target_sdk
 
     defaultConfig {
-        applicationId "com.ywqln.marvelDev"
+        applicationId "com.ywqln.app"
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
         versionCode 1
@@ -27,7 +27,7 @@ android {
     productFlavors {
         beta {
             minSdkVersion build_versions.min_sdk
-            applicationId 'com.ywqln.marveldev'
+            applicationId 'com.ywqln.app'
             targetSdkVersion build_versions.target_sdk
             versionCode 1
             versionName '1.0'
@@ -39,7 +39,7 @@ android {
         }
         publish {
             minSdkVersion build_versions.min_sdk
-            applicationId 'com.ywqln.marvel'
+            applicationId 'com.ywqln.app'
             targetSdkVersion build_versions.target_sdk
             versionCode 1
             versionName '1.0'

@@ -6,10 +6,10 @@
     <data>
         <variable
             name="viewModel"
-            type="com.ywqln.marvel.ui.detail.IDetailViewModel"/>
+            type="com.ywqln.app.ui.detail.IDetailViewModel"/>
         <variable
             name="event"
-            type="com.ywqln.marvel.ui.detail.IDetailEventHandler"/>
+            type="com.ywqln.app.ui.detail.IDetailEventHandler"/>
     </data>
 
     <android.support.design.widget.CoordinatorLayout
@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context="com.ywqln.marvel.ui.detail.NewsDetailActivity">
+        tools:context="com.ywqln.marvel.com.ywqln.app.ui.detail.NewsDetailActivity">
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/app_bar"

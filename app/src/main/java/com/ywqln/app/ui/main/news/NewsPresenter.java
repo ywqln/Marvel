@@ -1,0 +1,41 @@
+package com.ywqln.app.ui.main.news;
+
+import com.ywqln.app.net.guide.dto.response.model.News;
+import com.ywqln.app.net.guide.dto.response.model.NewsResult;
+import com.ywqln.app.ui.main.MainContract;
+import com.ywqln.marvel.net.exception.ResponseException;
+import com.ywqln.marvel.net.observer.SimpleObserver;
+
+/**
+ * 描述:消息Presenter.
+ * <p>
+ *
+ * @author yanwenqiang.
+ * @date 2019/2/12
+ */
+public class NewsPresenter extends MainContract.NewsFragment.Presenter {
+    public NewsPresenter(MainContract.NewsFragment.View view,
+            MainContract.NewsFragment.Model model) {
+        super(view, model);
+    }
+
+    @Override
+    public void getNewsList() {
+        mModel.getNews("yule", new SimpleObserver<NewsResult>() {
+            @Override
+            protected void onSuccess(NewsResult result) {
+                mView.showNewsList(result);
+            }
+
+            @Override
+            protected void onFail(ResponseException responseException) {
+                mView.showError(responseException.message);
+            }
+        });
+    }
+
+    @Override
+    public News getAdvert() {
+        return mModel.getAdvert();
+    }
+}

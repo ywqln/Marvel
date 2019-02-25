@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.ywqln.marvel.ui.detail.IDetailViewModel"/>
+            type="com.ywqln.app.ui.detail.IDetailViewModel"/>
     </data>
 
     <android.support.v4.widget.NestedScrollView
@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context="com.ywqln.marvel.ui.detail.NewsDetailActivity"
+        tools:context="com.ywqln.marvel.com.ywqln.app.ui.detail.NewsDetailActivity"
         tools:showIn="@layout/activity_detail">
 
         <LinearLayout
