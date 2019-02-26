@@ -6,7 +6,7 @@ import com.ywqln.app.net.guide.NewsTransformer;
 import com.ywqln.app.net.guide.dto.response.model.News;
 import com.ywqln.app.net.guide.dto.response.model.NewsResult;
 import com.ywqln.app.ui.main.MainContract;
-import com.ywqln.marvel.net.Requester;
+import com.ywqln.marvel.net.Requestor;
 import com.ywqln.marvel.net.observer.ResponseObserver;
 import com.ywqln.marvel.net.tranformer.ApiThreadTransformer;
 
@@ -20,7 +20,7 @@ import com.ywqln.marvel.net.tranformer.ApiThreadTransformer;
 public class NewsModel implements MainContract.NewsFragment.Model {
     @Override
     public void getNews(String type, ResponseObserver<NewsResult> observer) {
-        Requester.instance().getApi(NewsApi.class)
+        Requestor.instance().getApi(NewsApi.class)
                 .getNews(type)
                 .compose(new ApiThreadTransformer<>())
                 .compose(new NewsTransformer<>())

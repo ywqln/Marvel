@@ -22,11 +22,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @author yanwenqiang.
  * @date 2019/1/21
  */
-public class Requester {
+public class Requestor {
     private final static long DEFAULT_CONNECT_TIMEOUT = 15;
     private final static long DEFAULT_READ_TIMEOUT = 15;
     private final static long DEFAULT_WRITE_TIMEOUT = 15;
-    private static Requester mRequester;
+    private static Requestor mRequestor;
 
     /**
      * okHttpBuilder
@@ -40,18 +40,18 @@ public class Requester {
     /**
      * 禁止手动实例化
      */
-    private Requester() {
+    private Requestor() {
 
     }
 
     /**
      * 得到一个RequestManager对象，保证唯一性
      */
-    public static Requester instance() {
-        if (mRequester == null) {
-            mRequester = new Requester();
+    public static Requestor instance() {
+        if (mRequestor == null) {
+            mRequestor = new Requestor();
         }
-        return mRequester;
+        return mRequestor;
     }
 
     /**
@@ -71,7 +71,7 @@ public class Requester {
      * @param timeOut 超时时间
      * @return 返回当前对象
      */
-    public Requester setTimeOut(long timeOut) {
+    public Requestor setTimeOut(long timeOut) {
         if (mOkHttpBuilder == null) {
             return null;
         }

@@ -7,14 +7,18 @@ android {
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.1"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
     buildTypes {
         release {
+            // 混淆
             minifyEnabled false
+            // Zipalign优化
+            zipAlignEnabled true
+            // 前一部分代表系统默认的android程序的混淆文件，后一个文件是自己的定义混淆文件
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -49,3 +53,5 @@ dependencies {
     implementation 'com.jakewharton.rxbinding2:rxbinding:2.2.0'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
 }
+
+apply from: 'maven-release-aar.gradle'
