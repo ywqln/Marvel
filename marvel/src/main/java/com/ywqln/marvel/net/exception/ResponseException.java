@@ -10,6 +10,10 @@ package com.ywqln.marvel.net.exception;
 public final class ResponseException extends RuntimeException {
     public final int code;
     public final String message;
+    /**
+     * 原始信息，用于诊断具体问题
+     */
+    private String diagnostic;
 
     public ResponseException(int code) {
         this(code, null);
@@ -19,5 +23,14 @@ public final class ResponseException extends RuntimeException {
         super(message);
         this.code = code;
         this.message = message;
+    }
+
+    public String getDiagnostic() {
+        return diagnostic;
+    }
+
+    public ResponseException setDiagnostic(String diagnostic) {
+        this.diagnostic = diagnostic;
+        return this;
     }
 }

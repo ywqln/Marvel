@@ -21,7 +21,8 @@ public class NewsTransformer<T> implements ObservableTransformer<NewsResp<T>, T>
             if (tNewsResp.getErrorCode() == 0) {
                 return tNewsResp.getResult();
             }
-            throw new ResponseException(tNewsResp.getErrorCode(), tNewsResp.getReason());
+            throw new ResponseException(tNewsResp.getErrorCode(),
+                    tNewsResp.getReason()).setDiagnostic(tNewsResp.getReason());
         });
     }
 }

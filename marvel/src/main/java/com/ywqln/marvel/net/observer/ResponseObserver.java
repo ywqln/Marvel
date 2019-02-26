@@ -25,11 +25,12 @@ public abstract class ResponseObserver<T> implements Observer<T> {
     public void onError(Throwable e) {
         if (e instanceof HttpException) {
             int errorCode = ((HttpException) e).code();
-            onFail(new ResponseException(errorCode, getMsgByCode(errorCode)));
+            onFail(new ResponseException(errorCode, getMsgByCode(errorCode)).setDiagnostic(
+                    e.getMessage()));
         } else if (e instanceof ResponseException) {
             onFail((ResponseException) e);
         } else {
-            onFail(new ResponseException(-1, "请求失败"));
+            onFail(new ResponseException(-1, "请求失败").setDiagnostic("uncaught exception"));
         }
         onComplete();
     }
