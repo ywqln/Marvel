@@ -35,7 +35,7 @@ android {
                     app_name: "惊奇beta",
             ]
             buildConfigField("String", "NEWSAPPCODE", "\"APPCODE 1b56403f51d84d66812ac7aa274fefe6\"")
-            buildConfigField("String", "NEWSAPI", "\"http://toutiao-ali.juheapi.com\"")
+            buildConfigField("String", "NEWSAPI", "\"http://toutiao-ali.juheapi.cn\"")
         }
         publish {
             minSdkVersion build_versions.min_sdk

@@ -1,6 +1,5 @@
 package com.ywqln.app.net.test;
 
-import com.ywqln.app.net.guide.dto.response.ResultResp;
 import com.ywqln.marvel.net.annotation.BaseUrl;
 import com.ywqln.marvel.net.annotation.Interceptors;
 
