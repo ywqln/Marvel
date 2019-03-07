@@ -34,13 +34,9 @@ public class GlideCache {
     public void clearImageDiskCache(final Context context) {
         try {
             if (Looper.myLooper() == Looper.getMainLooper()) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Glide.get(
-                                context).clearDiskCache();
-                        //BusUtil.getBus().post(new GlideCacheClearSuccessEvent());
-                    }
+                new Thread(() -> {
+                    Glide.get(context).clearDiskCache();
+                    //BusUtil.getBus().post(new GlideCacheClearSuccessEvent());
                 }).start();
             } else {
                 Glide.get(context).clearDiskCache();
